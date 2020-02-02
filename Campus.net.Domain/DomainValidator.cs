@@ -24,7 +24,7 @@ namespace Campus.net.Domain
 
         internal static void ValidateNumber(int number, int minValue, int maxValue)
         {
-            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");
+            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");//omg
         }
     }
 }
