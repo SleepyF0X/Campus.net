@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Campus.net.Domain.DomainModels
+namespace Campus.net.Domain
 {
     public class Department
     {

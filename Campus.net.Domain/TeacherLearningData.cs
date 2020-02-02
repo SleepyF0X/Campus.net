@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Campus.net.Domain
 {
-    public class Group
+    public class TeacherLearningData
     {
         public Guid Id { get; }
-        private List<Student> _students;
+        private List<Group> _groups;
         private List<Subject> _subjects;
-        public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
+        public IReadOnlyCollection<Group> Groups => _groups.AsReadOnly();
         public IReadOnlyCollection<Subject> Subjects => _subjects.AsReadOnly();
-        public GroupName GroupName { get; }
-
     }
 }

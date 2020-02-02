@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Campus.net.Domain
 {
-    public class Specialty
+    public class GroupName
     {
+        //Fuck this shit
     }
 }
