@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Campus.net.Domain\Campus.net.Domain.csproj" />
+    <ProjectReference Include="..\Campus.net.Shared\Campus.net.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
