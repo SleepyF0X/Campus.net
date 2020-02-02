@@ -19,7 +19,7 @@ namespace Campus.net.Domain
 
         internal static void ValidateObject<T>(T obj)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));//comment
+            if (obj == null) throw new ArgumentNullException(nameof(obj));//comment commentTwo
         }
 
         internal static void ValidateNumber(int number, int minValue, int maxValue)
