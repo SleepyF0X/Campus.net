@@ -6,6 +6,6 @@ namespace Campus.net.Domain
 {
     public class GroupName
     {
-        //Fuck this shit
+        //Fuck this shit OMG
     }
 }
