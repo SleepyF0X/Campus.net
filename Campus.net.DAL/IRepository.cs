@@ -9,7 +9,7 @@ namespace Campus.net.DAL
         void AddOne(T item);//test
         T GetOne(Guid id);//любой коммент
         IReadOnlyCollection<T> GetAll();//Comment
-        void UpdateOne(T item);//Test
+        void UpdateOne(T item);//hui zakonchilis
         void DeleteOne(T item);
     }
 }
