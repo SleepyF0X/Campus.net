@@ -8,7 +8,7 @@ namespace Campus.net.DAL
     {
         void AddOne(T item);//test
         T GetOne(Guid id);
-        IReadOnlyCollection<T> GetAll();
+        IReadOnlyCollection<T> GetAll();//Comment
         void UpdateOne(T item);
         void DeleteOne(T item);
     }
