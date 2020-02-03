@@ -1,4 +1,4 @@
-﻿using Campus.net.Domain;
+﻿using Campus.net.Domain.MainData;
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
