@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campus.net.DAL.DALServices
+namespace Campus.net.DAL
 {
     public interface IRepositoryAsync<T>
     {
