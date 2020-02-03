@@ -7,7 +7,7 @@ namespace Campus.net.DAL.DALServices
     public interface IRepository<T>
     {
         void AddOne(T item);
-        T GetOne(Guid id);
+        T GetOne(Guid id);//test
         IReadOnlyCollection<T> GetAll();
         void UpdateOne(T item);
         void DeleteOne(T item);
