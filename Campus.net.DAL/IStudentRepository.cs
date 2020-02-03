@@ -8,6 +8,6 @@ namespace Campus.net.DAL
 {
     public interface IStudentRepository : IRepository<Student>
     {
-        IReadOnlyCollection<Student> GetPaginatedCountOfStudents(PaginationDto paginationDto);
+        IReadOnlyCollection<Student> GetPaginatedCountOfStudents(PaginationDto paginationDto);//Опаньки
     }
 }
