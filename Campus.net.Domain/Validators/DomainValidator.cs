@@ -19,12 +19,12 @@ namespace Campus.net.Domain.Validators
 
         internal static void ValidateObject<T>(T obj)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));//comment commentTwo
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
         }
 
         internal static void ValidateNumber(int number, int minValue, int maxValue)
         {
-            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");//omg
+            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");
         }
     }
 }
