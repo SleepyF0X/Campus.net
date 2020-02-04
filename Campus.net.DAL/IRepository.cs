@@ -6,10 +6,10 @@ namespace Campus.net.DAL
 {
     public interface IRepository<T>
     {
-        void AddOne(T item);//test
-        T GetOne(Guid id);//любой коммент
-        IReadOnlyCollection<T> GetAll();//Comment
-        void UpdateOne(T item);//hui zakonchilis
+        void AddOne(T item);
+        T GetOne(Guid id);
+        IReadOnlyCollection<T> GetAll();
+        void UpdateOne(T item);
         void DeleteOne(T item);
     }
 }
