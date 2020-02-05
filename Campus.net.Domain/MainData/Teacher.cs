@@ -11,18 +11,18 @@ namespace Campus.net.Domain.MainData
         public Guid Id { get; }
         public PersonalInfo PersonalInfo { get; }
         public TeacherLearningData TeacherLearningData { get; }
-        public double Raiting { get; }
+        public TeacherExpData TeacherExpData { get; } 
 
-        public Teacher(Guid id, PersonalInfo personalInfo, TeacherLearningData teacherLearningData, double raiting)
+        public Teacher(Guid id, PersonalInfo personalInfo, TeacherLearningData teacherLearningData, TeacherExpData teacherExpData)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(personalInfo);
             CustomValidator.ValidateObject(teacherLearningData);
-            CustomValidator.ValidateNumber(raiting, 0,5);
+            CustomValidator.ValidateObject(teacherExpData);
             Id = id;
             PersonalInfo = personalInfo;
             TeacherLearningData = teacherLearningData;
-            Raiting = raiting;
+            TeacherExpData = teacherExpData;
         }
     }
 }
