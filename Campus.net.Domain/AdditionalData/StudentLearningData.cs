@@ -16,5 +16,16 @@ namespace Campus.net.Domain.AdditionalData
         public DateTimeOffset EntryDate { get; }
         public StudyForm StudyForm { get; }
         public StudyType StudyType { get; }
+
+        public StudentLearningData(Guid id, Faculty faculty, Specialty specialty, Department department, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
+        {
+            Id = id;
+            Faculty = faculty;
+            Specialty = specialty;
+            Department = department;
+            EntryDate = entryDate;
+            StudyForm = studyForm;
+            StudyType = studyType;
+        }
     }
 }

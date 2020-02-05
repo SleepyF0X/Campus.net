@@ -14,5 +14,14 @@ namespace Campus.net.Domain.MainData
         public IReadOnlyCollection<Specialty> Specialties => _specialities.AsReadOnly();
         public IReadOnlyCollection<Teacher> Teachers => _teachers.AsReadOnly();
         public IReadOnlyCollection<Group> Groups => _groups.AsReadOnly();
+
+        public Department(Guid id, string name, List<Specialty> specialities, List<Teacher> teachers, List<Group> groups)
+        {
+            Id = id;
+            Name = name;
+            _specialities = specialities;
+            _teachers = teachers;
+            _groups = groups;
+        }
     }
 }

@@ -12,5 +12,15 @@ namespace Campus.net.Domain.AdditionalData
         public string Patronymic { get; }
         public DateTimeOffset BirthDate { get; }
         public string Adress { get; } //проживания 
+
+        public PersonalInfo(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string adress)
+        {
+            Id = id;
+            Name = name;
+            Surname = surname;
+            Patronymic = patronymic;
+            BirthDate = birthDate;
+            Adress = adress;
+        }
     }
 }

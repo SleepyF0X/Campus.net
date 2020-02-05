@@ -13,5 +13,14 @@ namespace Campus.net.Domain.MainData
         public IReadOnlyCollection<Group> Groups => _groups.AsReadOnly();
         public string SubjectName { get; }
         public Teacher Teacher { get; }
+
+        public Subject(Guid id, SubjectInfo subjectInfo, List<Group> groups, string subjectName, Teacher teacher)
+        {
+            Id = id;
+            SubjectInfo = subjectInfo;
+            _groups = groups;
+            SubjectName = subjectName;
+            Teacher = teacher;
+        }
     }
 }
