@@ -26,5 +26,9 @@ namespace Campus.net.Shared
         {
             if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");
         }
+        public static void ValidateNumber(double number, int minValue, int maxValue)
+        {
+            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");
+        }
     }
 }

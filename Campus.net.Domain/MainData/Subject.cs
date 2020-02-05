@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Campus.net.Shared;
 
 namespace Campus.net.Domain.MainData
 {
@@ -16,6 +17,11 @@ namespace Campus.net.Domain.MainData
 
         public Subject(Guid id, SubjectInfo subjectInfo, List<Group> groups, string subjectName, Teacher teacher)
         {
+            CustomValidator.ValidateId(id);
+            CustomValidator.ValidateString(subjectName, 2, 100);
+            CustomValidator.ValidateObject(subjectInfo);
+            CustomValidator.ValidateObject(groups);
+            CustomValidator.ValidateObject(teacher);
             Id = id;
             SubjectInfo = subjectInfo;
             _groups = groups;
