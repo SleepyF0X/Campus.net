@@ -12,4 +12,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Campus.net.Shared\Campus.net.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
