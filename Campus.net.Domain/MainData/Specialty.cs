@@ -13,8 +13,8 @@ namespace Campus.net.Domain.MainData
         //private readonly List<Department> _departments;
         //public IReadOnlyCollection<Department> Departments => _departments.AsReadOnly();
         private readonly List<Faculty> _faculties;
-
         private readonly List<Specialization> _specializations;
+
         public IReadOnlyCollection<Faculty> Faculties => _faculties.AsReadOnly();
         public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
 
@@ -31,6 +31,7 @@ namespace Campus.net.Domain.MainData
             Number = number;
             //_departments = departments;
             _faculties = faculties;
+            _specializations = specializations;
         }
     }
 }

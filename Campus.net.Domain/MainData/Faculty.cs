@@ -17,7 +17,7 @@ namespace Campus.net.Domain.MainData
 
         public IReadOnlyCollection<Specialty> Specialties => _specialties.AsReadOnly();
 
-        public Faculty(Guid id, string name, string dean, FacultyContactData facultyContactData, FacultyInfoData facultyInfoData, List<Specialty> specialties)
+        public Faculty(Guid id, FacultyContactData facultyContactData, FacultyInfoData facultyInfoData, List<Specialty> specialties)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(facultyContactData);
