@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Campus.net.Shared
+﻿namespace Campus.net.Shared
 {
     public class PaginationDto
     {
