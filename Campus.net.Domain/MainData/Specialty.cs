@@ -18,12 +18,13 @@ namespace Campus.net.Domain.MainData
         public IReadOnlyCollection<Faculty> Faculties => _faculties.AsReadOnly();
         public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
 
-        public Specialty(Guid id, string name, int number, List<Faculty> faculties)
+        public Specialty(Guid id, string name, int number, List<Specialization> specializations, List<Faculty> faculties)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 80);
             CustomValidator.ValidateNumber(number, 1, 200);
             //CustomValidator.ValidateObject(departments);
+            CustomValidator.ValidateObject(specializations);
             CustomValidator.ValidateObject(faculties);
             Id = id;
             Name = name;
