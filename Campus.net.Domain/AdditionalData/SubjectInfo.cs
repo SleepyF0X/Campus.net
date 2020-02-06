@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Campus.net.Shared;
 
 namespace Campus.net.Domain.AdditionalData
 {
@@ -9,6 +6,6 @@ namespace Campus.net.Domain.AdditionalData
     {
         public Guid Id { get; }
         //Fuck this shit
-        //Часы, кредиты, прочая шняга, позже 
+        //Часы, кредиты, прочая шняга, позже
     }
 }

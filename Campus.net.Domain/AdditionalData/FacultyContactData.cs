@@ -1,7 +1,5 @@
 ﻿using Campus.net.Shared;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Campus.net.Domain.AdditionalData
 {
@@ -10,8 +8,9 @@ namespace Campus.net.Domain.AdditionalData
         public Guid Id { get; }
         public string PhoneNumber { get; }
         public string Adress { get; }
+
         //можно добавить что-то еще
-        public FacultyContactData(Guid id,string phoneNumber, string adress)
+        public FacultyContactData(Guid id, string phoneNumber, string adress)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(phoneNumber, 7, 13); // городской 7 (236-19-70), мобильный 12 (380991644096) и еще плюсик, потому 13

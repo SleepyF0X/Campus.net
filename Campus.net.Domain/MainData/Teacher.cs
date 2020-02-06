@@ -1,8 +1,6 @@
 ﻿using Campus.net.Domain.AdditionalData;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Campus.net.Shared;
+using System;
 
 namespace Campus.net.Domain.MainData
 {
@@ -11,7 +9,7 @@ namespace Campus.net.Domain.MainData
         public Guid Id { get; }
         public PersonalInfo PersonalInfo { get; }
         public TeacherLearningData TeacherLearningData { get; }
-        public TeacherExpData TeacherExpData { get; } 
+        public TeacherExpData TeacherExpData { get; }
 
         public Teacher(Guid id, PersonalInfo personalInfo, TeacherLearningData teacherLearningData, TeacherExpData teacherExpData)
         {

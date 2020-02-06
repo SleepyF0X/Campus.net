@@ -1,9 +1,7 @@
 ﻿using Campus.net.Domain.Enums;
 using Campus.net.Domain.MainData;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Campus.net.Shared;
+using System;
 
 namespace Campus.net.Domain.AdditionalData
 {

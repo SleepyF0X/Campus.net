@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Campus.net.Shared;
+﻿using Campus.net.Shared;
+using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
@@ -12,7 +10,7 @@ namespace Campus.net.Domain.AdditionalData
         public string Surname { get; }
         public string Patronymic { get; }
         public DateTimeOffset BirthDate { get; }
-        public string Adress { get; } //проживания 
+        public string Adress { get; } //проживания
 
         public PersonalInfo(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string adress)
         {
