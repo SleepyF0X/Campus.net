@@ -8,24 +8,22 @@ namespace Campus.net.Domain.AdditionalData
     public class StudentLearningData
     {
         public Guid Id { get; }
-        public Faculty Faculty { get; }
-        public Specialty Specialty { get; }
-        public Department Department { get; }
+        public Faculty Faculty => Specialization.Specialty.Faculty;
+        public Specialty Specialty => Specialization.Specialty;
+        //public Department Department { get; }
+        public Specialization Specialization { get; }
         public int Course { get; }
         public DateTimeOffset EntryDate { get; }
         public StudyForm StudyForm { get; }
         public StudyType StudyType { get; }
 
-        public StudentLearningData(Guid id, Faculty faculty, Specialty specialty, Department department, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
+        public StudentLearningData(Guid id, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateObject(faculty);
-            CustomValidator.ValidateObject(specialty);
-            CustomValidator.ValidateObject(department);
+            //CustomValidator.ValidateObject(department);
+            CustomValidator.ValidateObject(specialization);
             Id = id;
-            Faculty = faculty;
-            Specialty = specialty;
-            Department = department;
+            Specialization = specialization;
             EntryDate = entryDate;
             StudyForm = studyForm;
             StudyType = studyType;

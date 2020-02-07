@@ -3,7 +3,7 @@ using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
 
-namespace Campus.net.Domain.AdditionalData
+namespace Campus.net.Domain.AdditionalData.TeacherData
 {
     public class TeacherLearningData
     {

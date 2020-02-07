@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campus.net.Domain", "..\Cam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campus.net.DAL", "..\Campus.net.DAL\Campus.net.DAL.csproj", "{E0F9495B-A479-456F-8B9A-4F32901C7B32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campus.net.Shared", "..\Campus.net.Shared\Campus.net.Shared.csproj", "{655D52B2-9E58-40C5-A93D-70284517A65A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campus.net.Shared", "..\Campus.net.Shared\Campus.net.Shared.csproj", "{655D52B2-9E58-40C5-A93D-70284517A65A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campus.net.DAL_Impl_EFCore", "..\Campus.net.DAL_Impl_EFCore\Campus.net.DAL_Impl_EFCore.csproj", "{2DFBE865-CF92-45FC-921F-D7860C3A2761}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campus.net.DAL_Impl_EFCore", "..\Campus.net.DAL_Impl_EFCore\Campus.net.DAL_Impl_EFCore.csproj", "{2DFBE865-CF92-45FC-921F-D7860C3A2761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

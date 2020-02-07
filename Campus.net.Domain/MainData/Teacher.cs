@@ -1,4 +1,5 @@
 ﻿using Campus.net.Domain.AdditionalData;
+using Campus.net.Domain.AdditionalData.TeacherData;
 using Campus.net.Shared;
 using System;
 

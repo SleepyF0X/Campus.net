@@ -1,4 +1,4 @@
-﻿using Campus.net.Domain.AdditionalData;
+﻿using Campus.net.Domain.AdditionalData.FacultyData;
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,6 @@ namespace Campus.net.Domain.MainData
         public Guid Id { get; }
         public FacultyContactData FacultyContactData { get; } //можно расширять
         public FacultyInfoData FacultyInfoData { get; }
-
         //private readonly List<Department> _departments;
         //public IReadOnlyCollection<Department> Departments => _departments.AsReadOnly();
         private readonly List<Specialty> _specialties;
