@@ -3,7 +3,7 @@ using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class PersonalInfo
+    public class PersonData
     {
         public Guid Id { get; }
         public string Name { get; }
@@ -12,7 +12,7 @@ namespace Campus.net.Domain.AdditionalData
         public DateTimeOffset BirthDate { get; }
         public string Adress { get; } //проживания
 
-        public PersonalInfo(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string adress)
+        public PersonData(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string adress)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 20);

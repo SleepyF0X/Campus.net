@@ -2,7 +2,7 @@
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class SubjectInfo
+    public class SubjectData
     {
         public Guid Id { get; }
         //Fuck this shit

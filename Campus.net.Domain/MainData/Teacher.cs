@@ -8,11 +8,11 @@ namespace Campus.net.Domain.MainData
     public class Teacher
     {
         public Guid Id { get; }
-        public PersonalInfo PersonalInfo { get; }
+        public PersonData PersonalInfo { get; }
         public TeacherLearningData TeacherLearningData { get; }
         public TeacherExpData TeacherExpData { get; }
 
-        public Teacher(Guid id, PersonalInfo personalInfo, TeacherLearningData teacherLearningData, TeacherExpData teacherExpData)
+        public Teacher(Guid id, PersonData personalInfo, TeacherLearningData teacherLearningData, TeacherExpData teacherExpData)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(personalInfo);
