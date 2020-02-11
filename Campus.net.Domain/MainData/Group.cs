@@ -2,6 +2,7 @@
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Campus.net.Domain.MainData
 {
@@ -9,20 +10,20 @@ namespace Campus.net.Domain.MainData
     {
         public Guid Id { get; }
         private readonly List<Student> _students;
-        private readonly List<Subject> _subjects;
+        private readonly Dictionary<Subject, Teacher> _subjectTeacher;
         public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        public IReadOnlyCollection<Subject> Subjects => _subjects.AsReadOnly();
+        public IReadOnlyDictionary<Subject, Teacher> SubjectTeacher => new ReadOnlyDictionary<Subject, Teacher>(_subjectTeacher);
         public GroupName GroupName { get; }
 
-        public Group(Guid id, List<Student> students, List<Subject> subjects, GroupName groupName)
+        public Group(Guid id, List<Student> students, Dictionary<Subject, Teacher> subjectTeacher, GroupName groupName)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(students);
-            CustomValidator.ValidateObject(subjects);
+            CustomValidator.ValidateObject(subjectTeacher);
             CustomValidator.ValidateObject(groupName);
             Id = id;
             _students = students;
-            _subjects = subjects;
+            _subjectTeacher = subjectTeacher;
             GroupName = groupName;
         }
     }

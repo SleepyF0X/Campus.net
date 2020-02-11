@@ -1,7 +1,7 @@
 ﻿using Campus.net.Shared;
 using System;
 
-namespace Campus.net.Domain.AdditionalData.TeacherData
+namespace Campus.net.Domain.AdditionalData
 {
     public class TeacherExpData
     {
