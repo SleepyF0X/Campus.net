@@ -2,30 +2,27 @@
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Campus.net.Domain.MainData
 {
     public class Subject
     {
         public Guid Id { get; }
-        public SubjectInfo SubjectInfo { get; }
-        private readonly List<Group> _groups;
-        public IReadOnlyCollection<Group> Groups => _groups.AsReadOnly();
+        public SubjectData SubjectData { get; }
+        private readonly Dictionary<Teacher, List<Group>> _teacherGroups;
+        public IReadOnlyDictionary<Teacher, List<Group>> TeacherGroups => new ReadOnlyDictionary<Teacher, List<Group>>(_teacherGroups);
         public string SubjectName { get; }
-        public Teacher Teacher { get; }
 
-        public Subject(Guid id, SubjectInfo subjectInfo, List<Group> groups, string subjectName, Teacher teacher)
+        public Subject(Guid id, SubjectData subjectData, Dictionary<Teacher, List<Group>> teacherGroups, string subjectName)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(subjectName, 2, 100);
-            CustomValidator.ValidateObject(subjectInfo);
-            CustomValidator.ValidateObject(groups);
-            CustomValidator.ValidateObject(teacher);
+            CustomValidator.ValidateObject(teacherGroups);
             Id = id;
-            SubjectInfo = subjectInfo;
-            _groups = groups;
+            SubjectData = subjectData;
+            _teacherGroups = teacherGroups;
             SubjectName = subjectName;
-            Teacher = teacher;
         }
     }
 }

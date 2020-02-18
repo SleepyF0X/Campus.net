@@ -7,19 +7,19 @@ namespace Campus.net.Domain.MainData
     public class Student
     {
         public Guid Id { get; }
-        public PersonalInfo PersonalInfo { get; }
-        public StudentLearningData LearningData { get; }
+        public PersonData PersonData { get; }
+        public StudentData StudentData { get; }
         public Group Group { get; }
 
-        public Student(Guid id, PersonalInfo personalInfo, StudentLearningData learningData, Group group)
+        public Student(Guid id, PersonData personData, StudentData studentData, Group group)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateObject(personalInfo);
-            CustomValidator.ValidateObject(learningData);
+            CustomValidator.ValidateObject(personData);
+            CustomValidator.ValidateObject(studentData);
             CustomValidator.ValidateObject(group);
             Id = id;
-            PersonalInfo = personalInfo;
-            LearningData = learningData;
+            PersonData = personData;
+            StudentData = studentData;
             Group = group;
         }
     }

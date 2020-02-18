@@ -5,22 +5,21 @@ using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class StudentLearningData
+    public class StudentData
     {
         public Guid Id { get; }
         public Faculty Faculty => Specialization.Specialty.Faculty;
         public Specialty Specialty => Specialization.Specialty;
-        //public Department Department { get; }
+        public Department Department => Specialization.Department;
         public Specialization Specialization { get; }
         public int Course { get; }
         public DateTimeOffset EntryDate { get; }
         public StudyForm StudyForm { get; }
         public StudyType StudyType { get; }
 
-        public StudentLearningData(Guid id, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
+        public StudentData(Guid id, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
         {
             CustomValidator.ValidateId(id);
-            //CustomValidator.ValidateObject(department);
             CustomValidator.ValidateObject(specialization);
             Id = id;
             Specialization = specialization;
