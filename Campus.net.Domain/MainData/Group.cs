@@ -15,14 +15,19 @@ namespace Campus.net.Domain.MainData
         public Specialization Specialization { get; }
         private readonly List<Student> _students;
         public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
-        public IReadOnlyCollection<TeacherSubject> SubjectGroups
+        private List<TeacherSubjectGroup> _teacherSubjectGroups;
+        public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
             get
             {
-                return (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
+                return _teacherSubjectGroups.AsReadOnly();
+            }
+            private set
+            {
+                _teacherSubjectGroups = value.ToList();
             }
         }
+        public IReadOnlyCollection<TeacherSubject> SubjectGroups =>(from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
 
         public Group(Guid id, List<Student> students, List<TeacherSubjectGroup> teacherSubjectGroups, GroupName groupName, Specialization specialization)
         {

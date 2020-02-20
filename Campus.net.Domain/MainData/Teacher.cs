@@ -14,14 +14,19 @@ namespace Campus.net.Domain.MainData
         public PersonData PersonData { get; }
         public TeacherExpData TeacherExpData { get; }
         public Department Department { get; }
-        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
-        public IReadOnlyCollection<SubjectGroup> SubjectGroups
+        private List<TeacherSubjectGroup> _teacherSubjectGroups;
+        public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
             get
             {
-                return (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
+                return _teacherSubjectGroups.AsReadOnly();
+            }
+            private set
+            {
+                _teacherSubjectGroups = value.ToList();
             }
         }
+        public IReadOnlyCollection<SubjectGroup> SubjectGroups => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
 
         public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, List<TeacherSubjectGroup> teacherSubjectGroups, Department department)
         {
