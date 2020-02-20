@@ -1,5 +1,5 @@
 ﻿using Campus.net.Domain.AdditionalData;
-using Campus.net.Domain.AdditionalData.TeacherData;
+using Campus.net.Domain.RelationClasses;
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
@@ -13,21 +13,27 @@ namespace Campus.net.Domain.MainData
         public Guid Id { get; }
         public PersonData PersonData { get; }
         public TeacherExpData TeacherExpData { get; }
-        private readonly Dictionary<Subject, List<Group>> _subjectGroups;
-        public IReadOnlyDictionary<Subject, List<Group>> SubjectGroups => new ReadOnlyDictionary<Subject, List<Group>>(_subjectGroups);
         public Department Department { get; }
+        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
+        public IReadOnlyCollection<SubjectGroup> SubjectGroups
+        {
+            get
+            {
+                return (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
+            }
+        }
 
-        public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, Dictionary<Subject, List<Group>> subjectGroups, Department department)
+        public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, List<TeacherSubjectGroup> teacherSubjectGroups, Department department)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(personData);
             CustomValidator.ValidateObject(teacherExpData);
-            CustomValidator.ValidateObject(subjectGroups);
+            CustomValidator.ValidateObject(teacherSubjectGroups);
             CustomValidator.ValidateObject(department);
             Id = id;
             PersonData = personData;
             TeacherExpData = teacherExpData;
-            _subjectGroups = subjectGroups;
+            _teacherSubjectGroups = teacherSubjectGroups;
             Department = department;
         }
     }

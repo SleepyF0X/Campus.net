@@ -1,30 +1,41 @@
 ﻿using Campus.net.Domain.AdditionalData;
+using Campus.net.Domain.RelationClasses;
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
     public class Group
     {
         public Guid Id { get; }
-        private readonly List<Student> _students;
-        private readonly Dictionary<Subject, Teacher> _subjectTeacher;
-        public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        public IReadOnlyDictionary<Subject, Teacher> SubjectTeacher => new ReadOnlyDictionary<Subject, Teacher>(_subjectTeacher);
         public GroupName GroupName { get; }
+        public Specialization Specialization { get; }
+        private readonly List<Student> _students;
+        public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
+        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
+        public IReadOnlyCollection<TeacherSubject> SubjectGroups
+        {
+            get
+            {
+                return (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
+            }
+        }
 
-        public Group(Guid id, List<Student> students, Dictionary<Subject, Teacher> subjectTeacher, GroupName groupName)
+        public Group(Guid id, List<Student> students, List<TeacherSubjectGroup> teacherSubjectGroups, GroupName groupName, Specialization specialization)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(students);
-            CustomValidator.ValidateObject(subjectTeacher);
+            CustomValidator.ValidateObject(teacherSubjectGroups);
             CustomValidator.ValidateObject(groupName);
+            CustomValidator.ValidateObject(specialization);
             Id = id;
             _students = students;
-            _subjectTeacher = subjectTeacher;
+            _teacherSubjectGroups = teacherSubjectGroups;
             GroupName = groupName;
+            Specialization = specialization;
         }
     }
 }
