@@ -15,7 +15,7 @@ namespace Campus.net.Domain.MainData
         public Specialization Specialization { get; }
         private readonly List<Student> _students;
         public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        private List<TeacherSubjectGroup> _teacherSubjectGroups;
+        private List<TeacherSubjectGroup> _teacherSubjectGroups;//test
         public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
             get
