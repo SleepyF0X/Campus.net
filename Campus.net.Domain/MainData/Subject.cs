@@ -10,9 +10,9 @@ namespace Campus.net.Domain.MainData
 {
     public class Subject
     {
-        public Guid Id { get; }
-        public SubjectData SubjectData { get; }
-        public string SubjectName { get; }
+        public Guid Id { get; private set; }
+        public SubjectData SubjectData { get; private set; }
+        public string SubjectName { get; private set; }
         private List<TeacherSubjectGroup> _teacherSubjectGroups;
         public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {

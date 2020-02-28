@@ -6,8 +6,8 @@ namespace Campus.net.Domain.MainData
 {
     public class Department
     {
-        public Guid Id { get; }
-        public string Name { get; }
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
         private readonly List<Specialization> _specializations;
         private readonly List<Teacher> _teachers;
         public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
