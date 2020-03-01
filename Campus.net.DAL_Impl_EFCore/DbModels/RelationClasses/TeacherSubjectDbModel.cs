@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Campus.net.DAL_Impl_EFCore.RelationClasses
+namespace Campus.net.DAL_Impl_EFCore.DbModels.RelationClasses
 {
     internal class TeacherSubjectDbModel
     {

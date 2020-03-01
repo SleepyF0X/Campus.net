@@ -9,7 +9,6 @@ namespace Campus.net.Domain.MainData
         public Guid Id { get; }
         public string Name { get; }
         private readonly List<Specialty> _specialties;
-
         public IReadOnlyCollection<Specialty> Specialties => _specialties.AsReadOnly();
 
         public Faculty(Guid id, List<Specialty> specialties)

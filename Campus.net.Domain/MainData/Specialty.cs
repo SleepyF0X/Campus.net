@@ -1,18 +1,30 @@
 ﻿using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
     public class Specialty
     {
-        public Guid Id { get; }
-        public string Name { get; }
-        public int Number { get; }
-        public Faculty Faculty { get; }
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public int Number { get; private set; }
+        public Guid FacultyId { get; private set; }
+        public Faculty Faculty { get; private set; }
 
-        private readonly List<Specialization> _specializations;
-        public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
+        private List<Specialization> _specializations;
+        public IReadOnlyCollection<Specialization> Specializations
+        {
+            get
+            {
+                return _specializations.AsReadOnly();
+            }
+            private set
+            {
+                _specializations = value.ToList();
+            }
+        }
 
         public Specialty(Guid id, string name, int number, List<Specialization> specializations, Faculty faculty)
         {

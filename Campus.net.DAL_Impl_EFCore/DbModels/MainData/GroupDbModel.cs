@@ -1,4 +1,4 @@
-﻿using Campus.net.DAL_Impl_EFCore.RelationClasses;
+﻿using Campus.net.DAL_Impl_EFCore.DbModels.RelationClasses;
 using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
