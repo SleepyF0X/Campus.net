@@ -1,6 +1,7 @@
 ﻿using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
@@ -8,15 +9,26 @@ namespace Campus.net.Domain.MainData
     {
         public Guid Id { get; }
         public string Name { get; }
-        private readonly List<Specialty> _specialties;
-        public IReadOnlyCollection<Specialty> Specialties => _specialties.AsReadOnly();
+        private List<Department> _departments;
+        public IReadOnlyCollection<Department> Departments
+        {
+            get
+            {
+                return _departments.AsReadOnly();
+            }
+            private set
+            {
+                _departments = value.ToList();
+            }
+        }
 
-        public Faculty(Guid id, List<Specialty> specialties)
+        public Faculty(Guid id, string name)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateObject(specialties);
+            CustomValidator.ValidateString(name, 2, 100);
             Id = id;
-            _specialties = specialties;
+            Name = name;
+            _departments = new List<Department>();
         }
     }
 }
