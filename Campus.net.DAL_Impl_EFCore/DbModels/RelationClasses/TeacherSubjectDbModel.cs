@@ -8,17 +8,17 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.RelationClasses
     internal class TeacherSubjectDbModel
     {
         public Guid Id { get; private set; }
-        public Guid TeacherId { get; private set; }
-        public Guid SubjectId { get; private set; }
+        public Guid TeacherDbModelId { get; private set; }
+        public Guid SubjectDbModelId { get; private set; }
 
-        public TeacherSubjectDbModel(Guid id, Guid teacherId, Guid subjectId)
+        public TeacherSubjectDbModel(Guid id, Guid teacherDbModelId, Guid subjectDbModelId)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateId(teacherId);
-            CustomValidator.ValidateId(subjectId);
+            CustomValidator.ValidateId(teacherDbModelId);
+            CustomValidator.ValidateId(subjectDbModelId);
             Id = Id;
-            TeacherId = teacherId;
-            SubjectId = subjectId;
+            TeacherDbModelId = teacherDbModelId;
+            SubjectDbModelId = subjectDbModelId;
         }
     }
 }

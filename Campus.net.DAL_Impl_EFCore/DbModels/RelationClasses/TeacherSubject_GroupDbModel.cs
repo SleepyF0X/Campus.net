@@ -9,16 +9,16 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.RelationClasses
     {
         public Guid Id { get; private set; }
         public Guid TeacherSubjectDbModelId { get; private set; }
-        public Guid GroupId { get; private set; }
+        public Guid GroupDbModelId { get; private set; }
 
-        public TeacherSubject_GroupDbModel(Guid id, Guid teacherSubjectDbModelId, Guid groupId)
+        public TeacherSubject_GroupDbModel(Guid id, Guid teacherSubjectDbModelId, Guid groupDbModelId)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateId(id);
-            CustomValidator.ValidateId(id);
+            CustomValidator.ValidateId(teacherSubjectDbModelId);
+            CustomValidator.ValidateId(groupDbModelId);
             Id = id;
             TeacherSubjectDbModelId = teacherSubjectDbModelId;
-            GroupId = groupId;
+            GroupDbModelId = groupDbModelId;
         }
     }
 }
