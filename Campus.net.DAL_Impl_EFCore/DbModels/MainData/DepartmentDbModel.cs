@@ -5,22 +5,24 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
 {
-    internal class SpecialtyDbModel
+    internal class DepartmentDbModel
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public int Number { get; private set; }
+        public Guid FacultyDbModelId { get; private set; }
         public List<SpecializationDbModel> SpecializationDbModels { get; private set; }
+        public List<TeacherDbModel> TeacherDbModels { get; private set; }
 
-        public SpecialtyDbModel(Guid id, string name, int number)
+        public DepartmentDbModel(Guid id, string name, Guid facultyDbModelId)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 100);
-            CustomValidator.ValidateNumber(number, 1, 200);
+            CustomValidator.ValidateId(facultyDbModelId);
             Id = id;
             Name = name;
-            Number = number;
+            FacultyDbModelId = facultyDbModelId;
             SpecializationDbModels = new List<SpecializationDbModel>();
+            TeacherDbModels = new List<TeacherDbModel>();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public List<SpecialtyDbModel> Specialties { get; private set; }
+        public List<DepartmentDbModel> DepartmentDbModels { get; private set; }
 
         public FacultyDbModel(Guid id, string name)
         {
@@ -17,7 +17,7 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
             CustomValidator.ValidateString(name, 2, 60);
             Id = id;
             Name = name;
-            Specialties = new List<SpecialtyDbModel>();
+            DepartmentDbModels = new List<DepartmentDbModel>();
         }
     }
 }

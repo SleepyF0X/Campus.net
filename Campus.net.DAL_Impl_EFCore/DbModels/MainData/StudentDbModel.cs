@@ -8,20 +8,20 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
     internal class StudentDbModel
     {
         public Guid Id { get; private set; }
-        public Guid PersonDataId { get; private set; }
-        public Guid StudentDataId { get; private set; }
-        public Guid GroupId { get; private set; }
+        public Guid PersonDataDbModelId { get; private set; }
+        public Guid StudentDataDbModelId { get; private set; }
+        public Guid GroupDbModelId { get; private set; }
 
-        public StudentDbModel(Guid id, Guid personDataId, Guid studentDataId, Guid groupId)
+        public StudentDbModel(Guid id, Guid personDataDbModelId, Guid studentDataDbModelId, Guid groupDbModelId)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateId(personDataId);
-            CustomValidator.ValidateId(studentDataId);
-            CustomValidator.ValidateId(groupId);
+            CustomValidator.ValidateId(personDataDbModelId);
+            CustomValidator.ValidateId(studentDataDbModelId);
+            CustomValidator.ValidateId(groupDbModelId);
             Id = id;
-            PersonDataId = personDataId;
-            StudentDataId = studentDataId;
-            GroupId = groupId;
+            PersonDataDbModelId = personDataDbModelId;
+            StudentDataDbModelId = studentDataDbModelId;
+            GroupDbModelId = groupDbModelId;
         }
     }
 }

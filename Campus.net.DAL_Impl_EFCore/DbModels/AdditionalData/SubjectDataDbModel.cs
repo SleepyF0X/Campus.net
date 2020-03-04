@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Campus.net.Domain.AdditionalData
+namespace Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData
 {
-    public class SubjectData
+    public class SubjectDataDbModel
     {
         public Guid Id { get; private set; }
         //Fuck this shit
