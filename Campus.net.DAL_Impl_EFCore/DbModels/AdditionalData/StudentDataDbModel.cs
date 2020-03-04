@@ -3,26 +3,23 @@ using Campus.net.Domain.MainData;
 using Campus.net.Shared;
 using System;
 
-namespace Campus.net.Domain.AdditionalData
+namespace Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData
 {
-    public class StudentData
+    internal class StudentDataDbModel
     {
         public Guid Id { get; private set; }
-        public Faculty Faculty => Specialization.Department.Faculty;
-        public Specialty Specialty => Specialization.Specialty;
-        public Department Department => Specialization.Department;
-        public Specialization Specialization { get; private set; }
+        public Guid SpecializationDbModelId { get; private set; }
         public int Course { get; private set; }
         public DateTimeOffset EntryDate { get; private set; }
         public StudyForm StudyForm { get; private set; }
         public StudyType StudyType { get; private set; }
 
-        public StudentData(Guid id, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
+        public StudentDataDbModel(Guid id, Guid specializationDbModelId, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateObject(specialization);
+            CustomValidator.ValidateId(specializationDbModelId);
             Id = id;
-            Specialization = specialization;
+            SpecializationDbModelId = specializationDbModelId;
             EntryDate = entryDate;
             StudyForm = studyForm;
             StudyType = studyType;

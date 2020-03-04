@@ -1,9 +1,9 @@
 ﻿using Campus.net.Shared;
 using System;
 
-namespace Campus.net.Domain.AdditionalData
+namespace Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData
 {
-    public class PersonData
+    internal class PersonDataDbModel
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
@@ -12,7 +12,7 @@ namespace Campus.net.Domain.AdditionalData
         public DateTimeOffset BirthDate { get; private set; }
         public string Address { get; private set; }
 
-        public PersonData(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string address)
+        public PersonDataDbModel(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string address)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 20);

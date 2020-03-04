@@ -9,17 +9,21 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
     internal class TeacherDbModel
     {
         public Guid Id { get; private set; }
-        public Guid PersonDataId { get; private set; }
-        public Guid TeacherExpDataId { get; private set; }
-        public Guid DepartmentId { get; private set; }
+        public Guid PersonDataDbModelId { get; private set; }
+        public Guid TeacherExpDataDbModelId { get; private set; }
+        public Guid DepartmentDbModelId { get; private set; }
         public List<TeacherSubject_GroupDbModel> TeacherSubject_GroupDbModels { get; private set; }
 
-        public TeacherDbModel(Guid id, Guid personDataId, Guid teacherExpDataId, Guid departmentId, List<TeacherSubject_GroupDbModel> teacherSubject_GroupDbModels)
+        public TeacherDbModel(Guid id, Guid personDataDbModelId, Guid teacherExpDataDbModelId, Guid departmentDbModelId)
         {
+            CustomValidator.ValidateId(id);
+            CustomValidator.ValidateId(personDataDbModelId);
+            CustomValidator.ValidateId(teacherExpDataDbModelId);
+            CustomValidator.ValidateId(departmentDbModelId);
             Id = id;
-            PersonDataId = personDataId;
-            TeacherExpDataId = teacherExpDataId;
-            DepartmentId = departmentId;
+            PersonDataDbModelId = personDataDbModelId;
+            TeacherExpDataDbModelId = teacherExpDataDbModelId;
+            DepartmentDbModelId = departmentDbModelId;
             TeacherSubject_GroupDbModels = new List<TeacherSubject_GroupDbModel>();
         }
         public void IncludeTS_GDbList(List<TeacherSubject_GroupDbModel> TS_GDbModels)

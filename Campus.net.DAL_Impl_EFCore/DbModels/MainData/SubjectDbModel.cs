@@ -9,17 +9,17 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
     internal class SubjectDbModel
     {
         public Guid Id { get; private set; }
-        public Guid SubjectDataId { get; private set; }
+        public Guid SubjectDataDbModelId { get; private set; }
         public string SubjectName { get; private set; }
         public List<TeacherSubject_GroupDbModel> TeacherSubject_GroupDbModels { get; private set; }
 
-        public SubjectDbModel(Guid id, Guid subjectDataId, string subjectName, List<TeacherSubject_GroupDbModel> teacherSubject_GroupDbModels)
+        public SubjectDbModel(Guid id, Guid subjectDataDbModelId, string subjectName)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateId(subjectDataId);
+            CustomValidator.ValidateId(subjectDataDbModelId);
             CustomValidator.ValidateString(subjectName, 2, 60);
             Id = id;
-            SubjectDataId = subjectDataId;
+            SubjectDataDbModelId = subjectDataDbModelId;
             SubjectName = subjectName;
             TeacherSubject_GroupDbModels = new List<TeacherSubject_GroupDbModel>();
         }
