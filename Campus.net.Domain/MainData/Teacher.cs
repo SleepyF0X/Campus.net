@@ -10,10 +10,10 @@ namespace Campus.net.Domain.MainData
 {
     public class Teacher
     {
-        public Guid Id { get; }
-        public PersonData PersonData { get; }
-        public TeacherExpData TeacherExpData { get; }
-        public Department Department { get; }
+        public Guid Id { get; private set; }
+        public PersonData PersonData { get; private set; }
+        public TeacherExpData TeacherExpData { get; private set; }
+        public Department Department { get; private set; }
         private List<TeacherSubjectGroup> _teacherSubjectGroups;
         public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
