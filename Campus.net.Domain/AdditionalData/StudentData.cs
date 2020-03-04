@@ -8,7 +8,7 @@ namespace Campus.net.Domain.AdditionalData
     public class StudentData
     {
         public Guid Id { get; }
-        public Faculty Faculty => Specialization.Specialty.Faculty;
+        public Faculty Faculty => Specialization.Department.Faculty;
         public Specialty Specialty => Specialization.Specialty;
         public Department Department => Specialization.Department;
         public Specialization Specialization { get; }
