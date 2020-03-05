@@ -12,8 +12,8 @@ namespace Campus.net.Domain.MainData
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public SubjectData SubjectData { get; private set; }
         private List<TeacherSubjectGroup> _teacherSubjectGroups;
+        private List<SubjectData> _subjectDatas;
         public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
             get
@@ -25,15 +25,25 @@ namespace Campus.net.Domain.MainData
                 _teacherSubjectGroups = value.ToList();
             }
         }
+        public IReadOnlyCollection<SubjectData> SubjectDatas
+        {
+            get
+            {
+                return _subjectDatas.AsReadOnly();
+            }
+            private set
+            {
+                _subjectDatas = value.ToList();
+            }
+        }
         public IReadOnlyCollection<TeacherGroup> TeacherGroups => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherGroup(tsg.Teacher, tsg.Group)).ToList().AsReadOnly();
 
-        public Subject(Guid id, string name, SubjectData subjectData)
+        public Subject(Guid id, string name)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 100);
             Id = id;
             Name = name;
-            SubjectData = subjectData;
             _teacherSubjectGroups = new List<TeacherSubjectGroup>();
         }
     }

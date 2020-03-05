@@ -1,4 +1,5 @@
-﻿using Campus.net.Shared;
+﻿using Campus.net.Domain.AdditionalData;
+using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Campus.net.Domain.MainData
         public Specialty Specialty { get; private set; }
         public Department Department { get; private set; }
         private List<Group> _groups;
+        private List<SubjectData> _subjectDatas;
         public IReadOnlyCollection<Group> Groups
         {
             get
@@ -21,6 +23,17 @@ namespace Campus.net.Domain.MainData
             private set
             {
                 _groups = value.ToList();
+            }
+        }
+        public IReadOnlyCollection<SubjectData> SubjectDatas
+        {
+            get
+            {
+                return _subjectDatas.AsReadOnly();
+            }
+            private set
+            {
+                _subjectDatas = value.ToList();
             }
         }
 
