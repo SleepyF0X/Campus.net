@@ -9,7 +9,6 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData
     {
         public Guid Id { get; private set; }
         public Guid SpecializationDbModelId { get; private set; }
-        public int Course { get; private set; }
         public DateTimeOffset EntryDate { get; private set; }
         public StudyForm StudyForm { get; private set; }
         public StudyType StudyType { get; private set; }

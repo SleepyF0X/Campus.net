@@ -12,7 +12,20 @@ namespace Campus.net.Domain.AdditionalData
         public Specialty Specialty => Specialization.Specialty;
         public Department Department => Specialization.Department;
         public Specialization Specialization { get; private set; }
-        public int Course { get; private set; }
+        public int Course
+        {
+            get
+            {
+                if (DateTimeOffset.Now.Month >= 8)
+                {
+                    return DateTimeOffset.Now.Year - EntryDate.Year+1;
+                }
+                else
+                {
+                    return DateTimeOffset.Now.Year - EntryDate.Year;
+                }
+            }
+        }
         public DateTimeOffset EntryDate { get; private set; }
         public StudyForm StudyForm { get; private set; }
         public StudyType StudyType { get; private set; }
