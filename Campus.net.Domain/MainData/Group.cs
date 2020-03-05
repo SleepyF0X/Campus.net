@@ -1,8 +1,10 @@
 ﻿using Campus.net.Domain.AdditionalData;
 using Campus.net.Shared;
+using Campus.net.Domain.Relations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 
 namespace Campus.net.Domain.MainData
 {
@@ -14,6 +16,8 @@ namespace Campus.net.Domain.MainData
         public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
         public IReadOnlyDictionary<Subject, Teacher> SubjectTeacher => new ReadOnlyDictionary<Subject, Teacher>(_subjectTeacher);
         public GroupName GroupName { get; }
+        public Guid SpecializationId { get; }
+        public Specialization Specialization { get { return SpecializationToGroups.Specializations[SpecializationId]; } }
 
         public Group(Guid id, List<Student> students, Dictionary<Subject, Teacher> subjectTeacher, GroupName groupName)
         {

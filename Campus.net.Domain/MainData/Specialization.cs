@@ -1,6 +1,8 @@
 ﻿using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
+using Campus.net.Domain.Relations;
+using System.Collections.ObjectModel;
 
 namespace Campus.net.Domain.MainData
 {
@@ -9,22 +11,30 @@ namespace Campus.net.Domain.MainData
         public Guid Id { get; }
         public string Name { get; }
         public Specialty Specialty { get; }
-        public Department Department { get; }
-        private List<Group> _groups;
-        public IReadOnlyCollection<Group> Groups => _groups.AsReadOnly();
+        public Guid DepartmentId { get; }
+        public Department Department { get { return DepartmentToSpecializations.Departments[DepartmentId]; } }
+        public Guid SpecialityId { get; }
+        public Specialty Speciality { get { return SpecialityToSpecializations.Speciality[SpecialityId]; } }
+        private readonly List<Group> _groups;
+        public IReadOnlyCollection<Group> Groups
+        {
+            get
+            {
+                foreach(var group in SpecializationToGroups.Groups.Values)
+                {
+                    if (group.Id.Equals(Id)) _groups.Add(group);
+                }
+                return new ReadOnlyCollection<Group>(_groups);
+            }
+        }
 
-        public Specialization(Guid id, string name, List<Group> groups, Specialty specialty, Department department)
+        public Specialization(Guid id, string name)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 100);
-            CustomValidator.ValidateObject(groups);
-            CustomValidator.ValidateObject(specialty);
-            CustomValidator.ValidateObject(department);
             Id = id;
             Name = name;
-            _groups = groups;
-            Specialty = specialty;
-            Department = department;
+            _groups = new List<Group>();
         }
     }
 }
