@@ -10,12 +10,22 @@ namespace Campus.net.Domain.MainData
 {
     public class Group
     {
-        public Guid Id { get; }
-        public GroupName GroupName { get; }
-        public Specialization Specialization { get; }
-        private readonly List<Student> _students;
-        public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        private List<TeacherSubjectGroup> _teacherSubjectGroups;//test
+        public Guid Id { get; private set; }
+        public string GroupName { get; private set; }
+        public Specialization Specialization { get; private set; }
+        private List<Student> _students;
+        public IReadOnlyCollection<Student> Students
+        {
+            get
+            {
+                return _students.AsReadOnly();
+            }
+            private set
+            {
+                _students = value.ToList();
+            }
+        }
+        private List<TeacherSubjectGroup> _teacherSubjectGroups;
         public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
             get
@@ -29,18 +39,16 @@ namespace Campus.net.Domain.MainData
         }
         public IReadOnlyCollection<TeacherSubject> TeacherSubjects => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
 
-        public Group(Guid id, List<Student> students, List<TeacherSubjectGroup> teacherSubjectGroups, GroupName groupName, Specialization specialization)
+        public Group(Guid id, string groupName, Specialization specialization)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateObject(students);
-            CustomValidator.ValidateObject(teacherSubjectGroups);
-            CustomValidator.ValidateObject(groupName);
+            CustomValidator.ValidateString(groupName, 5, 5);
             CustomValidator.ValidateObject(specialization);
             Id = id;
-            _students = students;
-            _teacherSubjectGroups = teacherSubjectGroups;
             GroupName = groupName;
             Specialization = specialization;
+            _students = new List<Student>();
+            _teacherSubjectGroups = new List<TeacherSubjectGroup>();
         }
     }
 }

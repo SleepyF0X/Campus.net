@@ -10,10 +10,10 @@ namespace Campus.net.Domain.MainData
 {
     public class Teacher
     {
-        public Guid Id { get; }
-        public PersonData PersonData { get; }
-        public TeacherExpData TeacherExpData { get; }
-        public Department Department { get; }
+        public Guid Id { get; private set; }
+        public PersonData PersonData { get; private set; }
+        public TeacherExpData TeacherExpData { get; private set; }
+        public Department Department { get; private set; }
         private List<TeacherSubjectGroup> _teacherSubjectGroups;
         public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
         {
@@ -28,18 +28,17 @@ namespace Campus.net.Domain.MainData
         }
         public IReadOnlyCollection<SubjectGroup> SubjectGroups => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
 
-        public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, List<TeacherSubjectGroup> teacherSubjectGroups, Department department)
+        public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, Department department)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(personData);
             CustomValidator.ValidateObject(teacherExpData);
-            CustomValidator.ValidateObject(teacherSubjectGroups);
             CustomValidator.ValidateObject(department);
             Id = id;
             PersonData = personData;
             TeacherExpData = teacherExpData;
-            _teacherSubjectGroups = teacherSubjectGroups;
             Department = department;
+            _teacherSubjectGroups = new List<TeacherSubjectGroup>();
         }
     }
 }

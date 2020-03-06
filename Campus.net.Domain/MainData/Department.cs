@@ -1,29 +1,50 @@
 ﻿using Campus.net.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
     public class Department
     {
-        public Guid Id { get; }
-        public string Name { get; }
-        private readonly List<Specialization> _specializations;
-        private readonly List<Teacher> _teachers;
-        public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
-        public IReadOnlyCollection<Teacher> Teachers => _teachers.AsReadOnly();
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public Faculty Faculty { get; private set; }
+        private List<Specialization> _specializations;
+        private List<Teacher> _teachers;
+        public IReadOnlyCollection<Specialization> Specializations
+        {
+            get
+            {
+                return _specializations.AsReadOnly();
+            }
+            private set
+            {
+                _specializations = value.ToList();
+            }
+        }
+        public IReadOnlyCollection<Teacher> Teachers
+        {
+            get
+            {
+                return _teachers.AsReadOnly();
+            }
+            private set
+            {
+                _teachers = value.ToList();
+            }
+        }
 
-        public Department(Guid id, string name, List<Specialization> specializations, List<Teacher> teachers, List<Group> groups)
+        public Department(Guid id, string name, Faculty faculty)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 100);
-            CustomValidator.ValidateObject(specializations);
-            CustomValidator.ValidateObject(teachers);
-            CustomValidator.ValidateObject(groups);
+            CustomValidator.ValidateObject(faculty);
             Id = id;
             Name = name;
-            _specializations = specializations;
-            _teachers = teachers;
+            Faculty = faculty;
+            _specializations = new List<Specialization>();
+            _teachers = new List<Teacher>();
         }
     }
 }
