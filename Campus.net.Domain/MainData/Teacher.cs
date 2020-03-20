@@ -8,37 +8,37 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Teacher
+    public sealed class Teacher
     {
-        public Guid Id { get; private set; }
-        public PersonData PersonData { get; private set; }
-        public TeacherExpData TeacherExpData { get; private set; }
-        public Department Department { get; private set; }
-        private List<TeacherSubjectGroup> _teacherSubjectGroups;
-        public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
-        {
-            get
-            {
-                return _teacherSubjectGroups.AsReadOnly();
-            }
-            private set
-            {
-                _teacherSubjectGroups = value.ToList();
-            }
-        }
-        public IReadOnlyCollection<SubjectGroup> SubjectGroups => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
+        public Guid Id { get; }
+        public PersonData PersonData { get; }
+        public TeacherExpData TeacherExpData { get; }
+        public Guid DepartmentId { get; }
+        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
 
-        public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, Department department)
+        public IReadOnlyCollection<SubjectGroup> SubjectGroups =>
+            (from tsg in _teacherSubjectGroups
+                where tsg.Teacher.Id.Equals(Id)
+                select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
+
+        public Teacher(Guid id, PersonData personData, TeacherExpData teacherExpData, Guid departmentId)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(personData);
             CustomValidator.ValidateObject(teacherExpData);
-            CustomValidator.ValidateObject(department);
+            CustomValidator.ValidateId(departmentId);
             Id = id;
             PersonData = personData;
             TeacherExpData = teacherExpData;
-            Department = department;
+            DepartmentId = departmentId;
             _teacherSubjectGroups = new List<TeacherSubjectGroup>();
+        }
+
+        public Teacher(List<TeacherSubjectGroup> teacherSubjectGroups, Guid id, PersonData personData,
+            TeacherExpData teacherExpData, Guid departmentId) : this(id, personData, teacherExpData, departmentId)
+        {
+            CustomValidator.ValidateObject(teacherSubjectGroups);
+            _teacherSubjectGroups = teacherSubjectGroups;
         }
     }
 }

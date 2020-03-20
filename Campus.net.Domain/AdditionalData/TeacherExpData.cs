@@ -3,23 +3,23 @@ using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class TeacherExpData
+    public sealed class TeacherExpData
     {
-        public Guid Id { get; private set; }
-        public double Raiting { get; private set; }
-        public string Position { get; private set; } //должность {зав кафедры/ старший преподователь/ ассистент...}
-        public int Expirience { get; private set; } //стаж препода в годах
+        public Guid Id { get; }
+        public double Rating { get; }
+        public string Position { get; } //должность {зав кафедры/ старший преподователь/ ассистент...}
+        public int Experience { get; } //стаж препода в годах
 
-        public TeacherExpData(Guid id, double raiting, string position, int expirience)
+        public TeacherExpData(Guid id, double rating, string position, int experience)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateNumber(raiting, 0, 5);
+            CustomValidator.ValidateNumber(rating, 0, 5);
             CustomValidator.ValidateString(position, 2, 30);
-            CustomValidator.ValidateNumber(expirience, 0, 70);
+            CustomValidator.ValidateNumber(experience, 0, 70);
             Id = id;
-            Raiting = raiting;
+            Rating = rating;
             Position = position;
-            Expirience = expirience;
+            Experience = experience;
         }
     }
 }

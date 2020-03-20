@@ -5,36 +5,32 @@ using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class StudentData
+    public sealed class StudentData
     {
-        public Guid Id { get; private set; }
-        public Faculty Faculty => Specialization.Department.Faculty;
-        public Specialty Specialty => Specialization.Specialty;
-        public Department Department => Specialization.Department;
-        public Specialization Specialization { get; private set; }
+        public Guid Id { get; }
+        public Guid FacultyId { get; }
+        public Specialization Specialization { get; }
+
         public int Course
         {
             get
             {
-                if (DateTimeOffset.Now.Month >= 8)
-                {
-                    return DateTimeOffset.Now.Year - EntryDate.Year+1;
-                }
-                else
-                {
-                    return DateTimeOffset.Now.Year - EntryDate.Year;
-                }
+                if (DateTimeOffset.Now.Month >= 8) return DateTimeOffset.Now.Year - EntryDate.Year + 1;
+                return DateTimeOffset.Now.Year - EntryDate.Year;
             }
         }
-        public DateTimeOffset EntryDate { get; private set; }
-        public StudyForm StudyForm { get; private set; }
-        public StudyType StudyType { get; private set; }
 
-        public StudentData(Guid id, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
+        public DateTimeOffset EntryDate { get; }
+        public StudyForm StudyForm { get; }
+        public StudyType StudyType { get; }
+
+        public StudentData(Guid id, Guid facultyId, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
         {
             CustomValidator.ValidateId(id);
+            CustomValidator.ValidateId(facultyId);
             CustomValidator.ValidateObject(specialization);
             Id = id;
+            FacultyId = facultyId;
             Specialization = specialization;
             EntryDate = entryDate;
             StudyForm = studyForm;

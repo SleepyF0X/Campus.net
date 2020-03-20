@@ -5,23 +5,13 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Specialty
+    public sealed class Specialty
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public int Number { get; private set; }
-        private List<Specialization> _specializations;
-        public IReadOnlyCollection<Specialization> Specializations
-        {
-            get
-            {
-                return _specializations.AsReadOnly();
-            }
-            private set
-            {
-                _specializations = value.ToList();
-            }
-        }
+        public Guid Id { get; }
+        public string Name { get; }
+        public int Number { get; }
+        private readonly List<Specialization> _specializations;
+        public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
 
         public Specialty(Guid id, string name, int number)
         {
@@ -32,6 +22,13 @@ namespace Campus.net.Domain.MainData
             Name = name;
             Number = number;
             _specializations = new List<Specialization>();
+        }
+
+        public Specialty(List<Specialization> specializations, Guid id, string name, int number) : this(id, name,
+            number)
+        {
+            CustomValidator.ValidateObject(specializations);
+            _specializations = specializations;
         }
     }
 }

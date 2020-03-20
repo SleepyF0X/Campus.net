@@ -12,7 +12,7 @@ namespace Campus.net.Shared
         public static void ValidateString(string str, int minLength, int maxLength)
         {
             if (string.IsNullOrEmpty(str)) throw new ArgumentNullException(nameof(str));
-            if (str.Length < minLength || str.Length > maxLength) throw new ArgumentException($"'{str}' does not fit the required length");
+            if (str.Length < minLength || str.Length > maxLength) throw new ArgumentException($"'{str}' does not fit the required length.");
         }
 
         public static void ValidateObject<T>(T obj)
@@ -22,12 +22,12 @@ namespace Campus.net.Shared
 
         public static void ValidateNumber(int number, int minValue, int maxValue)
         {
-            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");
+            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap.");
         }
 
         public static void ValidateNumber(double number, int minValue, int maxValue)
         {
-            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap");
+            if (number < minValue || number > maxValue) throw new ArgumentException($"'{number}' does not fit the required gap.");
         }
     }
 }

@@ -14,6 +14,6 @@ namespace Campus.net.DAL
 
         Task UpdateOneAsync(T item);
 
-        Task DeleteOneAsync(T item);
+        Task DeleteOneAsync(Guid id);
     }
 }

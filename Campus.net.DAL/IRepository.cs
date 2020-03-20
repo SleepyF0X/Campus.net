@@ -13,6 +13,6 @@ namespace Campus.net.DAL
 
         void UpdateOne(T item);
 
-        void DeleteOne(T item);
+        void DeleteOne(Guid id);
     }
 }

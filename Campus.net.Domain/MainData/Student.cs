@@ -4,22 +4,23 @@ using System;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Student
+    public sealed class Student
     {
-        public Guid Id { get; private set; }
-        public PersonData PersonData { get; private set; }
-        public StudentData StudentData { get; private set; }
-        public Group Group { get; private set; }
-        public Student(Guid id, PersonData personData, StudentData studentData, Group group)
+        public Guid Id { get; }
+        public PersonData PersonData { get; }
+        public StudentData StudentData { get; }
+        public Guid GroupId { get; }
+
+        public Student(Guid id, PersonData personData, StudentData studentData, Guid groupId)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateObject(personData);
             CustomValidator.ValidateObject(studentData);
-            CustomValidator.ValidateObject(group);
+            CustomValidator.ValidateObject(groupId);
             Id = id;
             PersonData = personData;
             StudentData = studentData;
-            Group = group;
+            GroupId = groupId;
         }
     }
 }

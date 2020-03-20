@@ -5,46 +5,35 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Department
+    public sealed class Department
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public Faculty Faculty { get; private set; }
-        private List<Specialization> _specializations;
-        private List<Teacher> _teachers;
-        public IReadOnlyCollection<Specialization> Specializations
-        {
-            get
-            {
-                return _specializations.AsReadOnly();
-            }
-            private set
-            {
-                _specializations = value.ToList();
-            }
-        }
-        public IReadOnlyCollection<Teacher> Teachers
-        {
-            get
-            {
-                return _teachers.AsReadOnly();
-            }
-            private set
-            {
-                _teachers = value.ToList();
-            }
-        }
+        public Guid Id { get; }
+        public string Name { get; }
+        public Guid FacultyId { get; }
+        private readonly List<Specialization> _specializations;
+        private readonly List<Teacher> _teachers;
+        public IReadOnlyCollection<Specialization> Specializations => _specializations.AsReadOnly();
+        public IReadOnlyCollection<Teacher> Teachers => _teachers.AsReadOnly();
 
-        public Department(Guid id, string name, Faculty faculty)
+        public Department(Guid id, string name, Guid facultyId)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 100);
-            CustomValidator.ValidateObject(faculty);
+            CustomValidator.ValidateId(facultyId);
             Id = id;
             Name = name;
-            Faculty = faculty;
+            FacultyId = facultyId;
             _specializations = new List<Specialization>();
             _teachers = new List<Teacher>();
+        }
+
+        public Department(List<Specialization> specializations, List<Teacher> teachers, Guid id, string name,
+            Guid facultyId) : this(id, name, facultyId)
+        {
+            CustomValidator.ValidateObject(specializations);
+            CustomValidator.ValidateObject(teachers);
+            _specializations = specializations;
+            _teachers = teachers;
         }
     }
 }
