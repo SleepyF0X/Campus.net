@@ -13,7 +13,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers
             return null;
         }
 
-        public Student EntityToModel(StudentDbModel item)
+        public Student ModelToEntity(StudentDbModel item)
         {
             return null;
         }
