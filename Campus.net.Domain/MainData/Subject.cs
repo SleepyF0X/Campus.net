@@ -8,35 +8,18 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Subject
+    public sealed class Subject
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        private List<TeacherSubjectGroup> _teacherSubjectGroups;
-        private List<SubjectData> _subjectDatas;
-        public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
-        {
-            get
-            {
-                return _teacherSubjectGroups.AsReadOnly();
-            }
-            private set
-            {
-                _teacherSubjectGroups = value.ToList();
-            }
-        }
-        public IReadOnlyCollection<SubjectData> SubjectDatas
-        {
-            get
-            {
-                return _subjectDatas.AsReadOnly();
-            }
-            private set
-            {
-                _subjectDatas = value.ToList();
-            }
-        }
-        public IReadOnlyCollection<TeacherGroup> TeacherGroups => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherGroup(tsg.Teacher, tsg.Group)).ToList().AsReadOnly();
+        public Guid Id { get; }
+        public string Name { get; }
+        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
+        private readonly List<SubjectData> _subjectDatas;
+        public IReadOnlyCollection<SubjectData> SubjectDatas => _subjectDatas.AsReadOnly();
+
+        public IReadOnlyCollection<TeacherGroup> TeacherGroups =>
+                (from tsg in _teacherSubjectGroups
+                where tsg.Teacher.Id.Equals(Id)
+                select new TeacherGroup(tsg.Teacher, tsg.Group)).ToList().AsReadOnly();
 
         public Subject(Guid id, string name)
         {
@@ -45,6 +28,16 @@ namespace Campus.net.Domain.MainData
             Id = id;
             Name = name;
             _teacherSubjectGroups = new List<TeacherSubjectGroup>();
+            _subjectDatas = new List<SubjectData>();
+        }
+
+        public Subject(List<TeacherSubjectGroup> teacherSubjectGroups, List<SubjectData> subjectDatas, Guid id,
+            string name) : this(id, name)
+        {
+            CustomValidator.ValidateObject(teacherSubjectGroups);
+            CustomValidator.ValidateObject(subjectDatas);
+            _teacherSubjectGroups = teacherSubjectGroups;
+            _subjectDatas = subjectDatas;
         }
     }
 }

@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Campus.net.Domain.RelationClasses
 {
-    public class TeacherSubject
+    public sealed class TeacherSubject
     {
-        public Teacher Teacher { get; private set; }
-        public Subject Subject { get; private set; }
+        public Teacher Teacher { get; }
+        public Subject Subject { get; }
 
         public TeacherSubject(Teacher teacher, Subject subject)
         {

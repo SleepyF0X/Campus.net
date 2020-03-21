@@ -5,22 +5,12 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Faculty
+    public sealed class Faculty
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        private List<Department> _departments;
-        public IReadOnlyCollection<Department> Departments
-        {
-            get
-            {
-                return _departments.AsReadOnly();
-            }
-            private set
-            {
-                _departments = value.ToList();
-            }
-        }
+        public Guid Id { get; }
+        public string Name { get; }
+        private readonly List<Department> _departments;
+        public IReadOnlyCollection<Department> Departments => _departments.AsReadOnly();
 
         public Faculty(Guid id, string name)
         {
@@ -29,6 +19,12 @@ namespace Campus.net.Domain.MainData
             Id = id;
             Name = name;
             _departments = new List<Department>();
+        }
+
+        public Faculty(List<Department> departments, Guid id, string name) : this(id, name)
+        {
+            CustomValidator.ValidateObject(departments);
+            _departments = departments;
         }
     }
 }

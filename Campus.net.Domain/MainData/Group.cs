@@ -8,47 +8,39 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Group
+    public sealed class Group
     {
-        public Guid Id { get; private set; }
-        public string GroupName { get; private set; }
-        public Specialization Specialization { get; private set; }
-        private List<Student> _students;
-        public IReadOnlyCollection<Student> Students
-        {
-            get
-            {
-                return _students.AsReadOnly();
-            }
-            private set
-            {
-                _students = value.ToList();
-            }
-        }
-        private List<TeacherSubjectGroup> _teacherSubjectGroups;
-        public IReadOnlyCollection<TeacherSubjectGroup> TeacherSubjectGroups
-        {
-            get
-            {
-                return _teacherSubjectGroups.AsReadOnly();
-            }
-            private set
-            {
-                _teacherSubjectGroups = value.ToList();
-            }
-        }
-        public IReadOnlyCollection<TeacherSubject> TeacherSubjects => (from tsg in _teacherSubjectGroups where tsg.Teacher.Id.Equals(Id) select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
+        public Guid Id { get; }
+        public string GroupName { get; }
+        public Guid SpecializationId { get; }
+        private readonly List<Student> _students;
+        public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
+        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
 
-        public Group(Guid id, string groupName, Specialization specialization)
+        public IReadOnlyCollection<TeacherSubject> TeacherSubjects => 
+            (from tsg in _teacherSubjectGroups
+            where tsg.Teacher.Id.Equals(Id)
+            select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
+
+        public Group(Guid id, string groupName, Guid specializationId)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(groupName, 5, 5);
-            CustomValidator.ValidateObject(specialization);
+            CustomValidator.ValidateId(specializationId);
             Id = id;
             GroupName = groupName;
-            Specialization = specialization;
+            SpecializationId = specializationId;
             _students = new List<Student>();
             _teacherSubjectGroups = new List<TeacherSubjectGroup>();
+        }
+
+        public Group(List<Student> students, List<TeacherSubjectGroup> teacherSubjectGroups, Guid id, string groupName,
+            Guid specializationId) : this(id, groupName, specializationId)
+        {
+            CustomValidator.ValidateObject(teacherSubjectGroups);
+            CustomValidator.ValidateObject(students);
+            _students = students;
+            _teacherSubjectGroups = teacherSubjectGroups;
         }
     }
 }

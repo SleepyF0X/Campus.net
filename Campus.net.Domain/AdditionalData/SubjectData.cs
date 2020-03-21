@@ -3,11 +3,12 @@ using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class SubjectData
+    public sealed class SubjectData
     {
-        public Guid Id { get; private set; }
-        public Subject Subject { get; private set; }
-        public Specialization Specialization { get; private set; }
+        public Guid Id { get; }
+        public Subject Subject { get; }
+
+        public Specialization Specialization { get; }
         //Fuck this shit
         //Часы, кредиты, прочая шняга, позже
     }

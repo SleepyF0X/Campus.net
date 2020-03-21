@@ -6,48 +6,38 @@ using System.Linq;
 
 namespace Campus.net.Domain.MainData
 {
-    public class Specialization
+    public sealed class Specialization
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public Specialty Specialty { get; private set; }
-        public Department Department { get; private set; }
-        private List<Group> _groups;
-        private List<SubjectData> _subjectDatas;
-        public IReadOnlyCollection<Group> Groups
-        {
-            get
-            {
-                return _groups.AsReadOnly();
-            }
-            private set
-            {
-                _groups = value.ToList();
-            }
-        }
-        public IReadOnlyCollection<SubjectData> SubjectDatas
-        {
-            get
-            {
-                return _subjectDatas.AsReadOnly();
-            }
-            private set
-            {
-                _subjectDatas = value.ToList();
-            }
-        }
+        public Guid Id { get; }
+        public string Name { get; }
+        public Guid SpecialtyId { get; }
+        public Guid DepartmentId { get; }
+        private readonly List<Group> _groups;
+        private readonly List<SubjectData> _subjectDatas;
+        public IReadOnlyCollection<Group> Groups => _groups.AsReadOnly();
+        public IReadOnlyCollection<SubjectData> SubjectDatas => _subjectDatas.AsReadOnly();
 
-        public Specialization(Guid id, string name, Specialty specialty, Department department)
+        public Specialization(Guid id, string name, Guid specialtyId, Guid departmentId)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 100);
-            CustomValidator.ValidateObject(specialty);
-            CustomValidator.ValidateObject(department);
+            CustomValidator.ValidateId(specialtyId);
+            CustomValidator.ValidateId(departmentId);
             Id = id;
             Name = name;
-            Specialty = specialty;
-            Department = department;
+            SpecialtyId = specialtyId;
+            DepartmentId = departmentId;
             _groups = new List<Group>();
+            _subjectDatas = new List<SubjectData>();
+        }
+
+        public Specialization(List<Group> groups, List<SubjectData> subjectDatas, Guid id, string name,
+            Guid specialtyId, Guid departmentId) : this(id, name, specialtyId, departmentId)
+        {
+            CustomValidator.ValidateObject(groups);
+            CustomValidator.ValidateObject(subjectDatas);
+            _groups = groups;
+            _subjectDatas = subjectDatas;
         }
     }
 }

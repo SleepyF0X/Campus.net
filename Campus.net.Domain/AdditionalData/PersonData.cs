@@ -3,14 +3,14 @@ using System;
 
 namespace Campus.net.Domain.AdditionalData
 {
-    public class PersonData
+    public sealed class PersonData
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public string Patronymic { get; private set; }
-        public DateTimeOffset BirthDate { get; private set; }
-        public string Address { get; private set; }
+        public Guid Id { get; }
+        public string Name { get; }
+        public string Surname { get; }
+        public string Patronymic { get; }
+        public DateTimeOffset BirthDate { get; }
+        public string Address { get; }
 
         public PersonData(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string address)
         {
