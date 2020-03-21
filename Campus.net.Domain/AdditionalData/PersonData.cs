@@ -12,8 +12,7 @@ namespace Campus.net.Domain.AdditionalData
         public DateTimeOffset BirthDate { get; }
         public string Address { get; }
 
-        public PersonData(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate,
-            string address)
+        public PersonData(Guid id, string name, string surname, string patronymic, DateTimeOffset birthDate, string address)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateString(name, 2, 20);

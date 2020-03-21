@@ -17,7 +17,7 @@ namespace Campus.net.Domain.MainData
         private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
 
         public IReadOnlyCollection<SubjectGroup> SubjectGroups =>
-            (from tsg in _teacherSubjectGroups
+                (from tsg in _teacherSubjectGroups
                 where tsg.Teacher.Id.Equals(Id)
                 select new SubjectGroup(tsg.Subject, tsg.Group)).ToList().AsReadOnly();
 
