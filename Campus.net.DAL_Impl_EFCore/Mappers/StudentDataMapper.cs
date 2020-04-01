@@ -29,7 +29,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers
         public StudentData ModelToEntity(StudentDataDbModel item)
         {
             CustomValidator.ValidateObject(item);
-            var specialization = _context.Specializations.Where(s => s.Id.Equals(item.SpecializationDbModelId)).FirstOrDefault();
+            var specialization = _context.Specializations.Find(item.SpecializationDbModelId);
             return new StudentData(item.Id, Guid.Empty, _specializationMapper.ModelToEntity(specialization), item.EntryDate, item.StudyForm, item.StudyType);
         }
     }
