@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData;
 using Campus.net.Domain.AdditionalData;
@@ -22,13 +23,14 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers
         public StudentDataDbModel EntityToModel(StudentData item)
         {
             CustomValidator.ValidateObject(item);
-            return new StudentDataDbModel(item.Id, item.Specialization.Id, item.EntryDate, item.StudyForm, item.StudyType);
+            return new StudentDataDbModel(item.Id, item.FacultyId, item.Specialization.Id, item.EntryDate, item.StudyForm, item.StudyType);
         }
 
         public StudentData ModelToEntity(StudentDataDbModel item)
         {
             CustomValidator.ValidateObject(item);
-            return new StudentData(item.Id, Guid.Empty, _specializationMapper.ModelToEntity(item.SpecializationDbModelId), item.EntryDate, item.StudyForm, item.StudyType);
+            var specialization = _context.Specializations.Where(s => s.Id.Equals(item.SpecializationDbModelId)).FirstOrDefault();
+            return new StudentData(item.Id, Guid.Empty, _specializationMapper.ModelToEntity(specialization), item.EntryDate, item.StudyForm, item.StudyType);
         }
     }
 }
