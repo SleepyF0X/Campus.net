@@ -9,20 +9,20 @@ namespace Campus.net.Domain.RelationClasses
     public sealed class TeacherSubjectGroup
     {
         public Guid Id { get; }
-        public Teacher Teacher { get; }
-        public Subject Subject { get; }
-        public Group Group { get; }
+        public Guid TeacherId { get; }
+        public Guid SubjectId { get; }
+        public Guid GroupId { get; }
 
-        public TeacherSubjectGroup(Guid id, Teacher teacher, Subject subject, Group group)
+        public TeacherSubjectGroup(Guid id, Guid teacherId, Guid subjectId, Guid groupId)
         {
             CustomValidator.ValidateId(id);
-            CustomValidator.ValidateObject(teacher);
-            CustomValidator.ValidateObject(subject);
-            CustomValidator.ValidateObject(group);
+            CustomValidator.ValidateId(teacherId);
+            CustomValidator.ValidateId(subjectId);
+            CustomValidator.ValidateId(groupId);
             Id = id;
-            Teacher = teacher;
-            Subject = subject;
-            Group = group;
+            TeacherId = teacherId;
+            SubjectId = subjectId;
+            GroupId = groupId;
         }
     }
 }

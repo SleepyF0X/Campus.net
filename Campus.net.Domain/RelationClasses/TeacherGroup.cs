@@ -8,15 +8,15 @@ namespace Campus.net.Domain.RelationClasses
 {
     public sealed class TeacherGroup
     {
-        public Teacher Teacher { get; }
-        public Group Group { get; }
+        public Guid TeacherId { get; }
+        public Guid GroupId { get; }
 
-        public TeacherGroup(Teacher teacher, Group group)
+        public TeacherGroup(Guid teacherId, Guid groupId)
         {
-            CustomValidator.ValidateObject(teacher);
-            CustomValidator.ValidateObject(group);
-            Teacher = teacher;
-            Group = group;
+            CustomValidator.ValidateId(teacherId);
+            CustomValidator.ValidateId(groupId);
+            TeacherId = teacherId;
+            GroupId = groupId;
         }
     }
 }

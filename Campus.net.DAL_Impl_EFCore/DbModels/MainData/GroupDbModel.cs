@@ -25,10 +25,5 @@ namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
             StudentDbModels = new List<StudentDbModel>();
             TeacherSubject_GroupDbModels = new List<TeacherSubject_GroupDbModel>();
         }
-        public void IncludeTS_GDbList(List<TeacherSubject_GroupDbModel> TS_GDbModels)
-        {
-            CustomValidator.ValidateObject(TS_GDbModels);
-            TeacherSubject_GroupDbModels = TS_GDbModels;
-        }
     }
 }
