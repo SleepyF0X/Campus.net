@@ -19,7 +19,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers
             CustomValidator.ValidateObject(item);
             var specializationDbModel = _context.Specializations.Where(s => s.Id.Equals(item.Id)).Include(s => s.GroupDbModels).Include(s => s.SubjectDataDbModels).FirstOrDefault();
             var groups = (from gp in specializationDbModel.GroupDbModels select _groupMapper.ModelToEntity(gp)).ToList();
-            var subjectDatas = (from subjectData in specializationDbModel.SubjectDataDbModels select _subjectDataMapper.EntityToModel(subjectData)).ToList();
+            var subjectDatas = (from subjectData in specializationDbModel.SubjectDataDbModels select _subjectDataMapper.ModelToEntity(subjectData)).ToList();
             return new Specialization(
                 groups,
                 subjectDatas,
