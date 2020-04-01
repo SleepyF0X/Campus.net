@@ -19,8 +19,8 @@ namespace Campus.net.Domain.MainData
 
         public IReadOnlyCollection<TeacherSubject> TeacherSubjects => 
             (from tsg in _teacherSubjectGroups
-            where tsg.Teacher.Id.Equals(Id)
-            select new TeacherSubject(tsg.Teacher, tsg.Subject)).ToList().AsReadOnly();
+            where tsg.TeacherId.Equals(Id)
+            select new TeacherSubject(tsg.TeacherId, tsg.SubjectId)).ToList().AsReadOnly();
 
         public Group(Guid id, string groupName, Guid specializationId)
         {

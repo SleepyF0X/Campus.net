@@ -8,15 +8,15 @@ namespace Campus.net.Domain.RelationClasses
 {
     public sealed class TeacherSubject
     {
-        public Teacher Teacher { get; }
-        public Subject Subject { get; }
+        public Guid TeacherId { get; }
+        public Guid SubjectId { get; }
 
-        public TeacherSubject(Teacher teacher, Subject subject)
+        public TeacherSubject(Guid teacherId, Guid subjectId)
         {
-            CustomValidator.ValidateObject(teacher);
-            CustomValidator.ValidateObject(subject);
-            Teacher = teacher;
-            Subject = subject;
+            CustomValidator.ValidateId(teacherId);
+            CustomValidator.ValidateId(subjectId);
+            TeacherId = teacherId;
+            SubjectId = subjectId;
         }
     }
 }
