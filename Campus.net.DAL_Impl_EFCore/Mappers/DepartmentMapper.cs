@@ -19,7 +19,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers
             CustomValidator.ValidateObject(item);
             var departmentDbModel = _context.Departments.Where(d => d.Id.Equals(item.Id)).Include(d => d.SpecializationDbModels).Include(d => d.TeacherDbModels).FirstOrDefault();
             var specializations = (from specialization in departmentDbModel.SpecializationDbModels select _specializationMapper.ModelToEntity(specialization)).ToList();
-            var teachers = (from teacher in departmentDbModel.TeacherDbModels select _teacherMapper.EntityToModel(teacher)).ToList();
+            var teachers = (from teacher in departmentDbModel.TeacherDbModels select _teacherMapper.ModelToEntity(teacher)).ToList();
             return new Department(
                 specializations,
                 teachers,
