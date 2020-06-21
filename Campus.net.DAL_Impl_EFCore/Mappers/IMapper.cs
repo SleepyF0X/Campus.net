@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.Mappers
 {
-    internal interface IMapper<TDomain, TDbModel>
+    internal interface IMapper<TDomainModel, TDbModel>
     {
-        public TDbModel DomainToDb(TDomain item);
-        public TDomain DbToDomain(TDbModel item);
+        public TDbModel DomainToDb(TDomainModel item);
+        public TDomainModel DbToDomain(TDbModel item);
     }
 }
