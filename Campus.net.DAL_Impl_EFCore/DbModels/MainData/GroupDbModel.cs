@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
 {
-    internal class GroupDbModel
+    internal sealed class GroupDbModel
     {
         public Guid Id { get; private set; }
         public string GroupName { get; private set; }

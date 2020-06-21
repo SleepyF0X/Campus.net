@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
 {
-    internal class SpecializationDbModel
+    internal sealed class SpecializationDbModel
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }

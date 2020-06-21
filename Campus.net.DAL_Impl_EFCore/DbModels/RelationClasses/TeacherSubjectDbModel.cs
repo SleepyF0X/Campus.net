@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.RelationClasses
 {
-    internal class TeacherSubjectDbModel
+    internal sealed class TeacherSubjectDbModel
     {
         public Guid Id { get; private set; }
         public Guid TeacherDbModelId { get; private set; }

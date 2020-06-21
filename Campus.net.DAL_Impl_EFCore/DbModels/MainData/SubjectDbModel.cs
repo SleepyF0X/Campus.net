@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
 {
-    internal class SubjectDbModel
+    internal sealed class SubjectDbModel
     {
         public Guid Id { get; private set; }
         public string SubjectName { get; private set; }

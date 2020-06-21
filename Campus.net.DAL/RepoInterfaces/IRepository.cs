@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Campus.net.DAL
+namespace Campus.net.DAL.RepoInterfaces
 {
     public interface IRepository<T>
     {
-        void AddOne(T item);
-
-        T GetOne(Guid id);
-
         IReadOnlyCollection<T> GetAll();
-
+        T GetOne(Guid id);
+        void AddOne(T item);
         void UpdateOne(T item);
-
         void DeleteOne(Guid id);
+        bool Exists(Guid id);
     }
 }

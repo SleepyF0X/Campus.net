@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Campus.net.DAL_Impl_EFCore.Data.ContextFolder;
 using Campus.net.DAL_Impl_EFCore.DbModels.MainData;
 using Campus.net.DAL_Impl_EFCore.DbModels.RelationClasses;
+using Campus.net.DAL_Impl_EFCore.Mappers.Implementation.AdditionalData;
+using Campus.net.DAL_Impl_EFCore.Mappers.Implementation.Relational;
+using Campus.net.DAL_Impl_EFCore.Mappers.Interfaces.AdditionalData;
+using Campus.net.DAL_Impl_EFCore.Mappers.Interfaces.MainData;
+using Campus.net.DAL_Impl_EFCore.Mappers.Interfaces.Relational;
 using Campus.net.Domain.MainData;
-using Campus.net.Shared;
 
-namespace Campus.net.DAL_Impl_EFCore.Mappers
+namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
 {
-    internal sealed class TeacherMapper : IMapper<Teacher, TeacherDbModel>
+    internal sealed class TeacherMapper : ITeacherMapper
     {
         private readonly CampusDbContext _context;
-        private readonly TsgMapper _tsgMapper;
-        private readonly PersonDataMapper _personDataMapper;
-        private readonly TeacherExpDataMapper _teacherExpDataMapper;
+        private readonly ITsgMapper _tsgMapper;
+        private readonly IPersonDataMapper _personDataMapper;
+        private readonly ITeacherExpDataMapper _teacherExpDataMapper;
         public TeacherMapper(CampusDbContext context)
         {
             _context = context;
@@ -23,29 +26,25 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers
             _teacherExpDataMapper = new TeacherExpDataMapper();
         }
 
-        public TeacherDbModel EntityToModel(Teacher item)
+        public TeacherDbModel DomainToDb(Teacher item)
         {
-            CustomValidator.ValidateObject(item);
             return new TeacherDbModel(item.Id, item.PersonData.Id, item.TeacherExpData.Id, item.DepartmentId);
         }
 
-        public Teacher ModelToEntity(TeacherDbModel item)
+        public Teacher DbToDomain(TeacherDbModel item)
         {
-            CustomValidator.ValidateObject(item);
             var tsDbModelLinks = _context.TeacherSubjects.Where(ts => ts.TeacherDbModelId.Equals(item.Id)).ToList();
-            CustomValidator.ValidateObject(tsDbModelLinks);
             var tsgDbModelList = new List<TeacherSubject_GroupDbModel>();
             foreach (var ts in tsDbModelLinks)
             {
                 tsgDbModelList.AddRange(_context.TeacherSubject_Groups.ToList()
                     .Where(tsg => tsg.TeacherSubjectDbModelId.Equals(ts.Id)));
             }
-            CustomValidator.ValidateObject(tsgDbModelList);
             return new Teacher(
-                (from teacherSubjectGroupDbModel in tsgDbModelList select _tsgMapper.ModelToEntity(teacherSubjectGroupDbModel)).ToList(),
+                (from teacherSubjectGroupDbModel in tsgDbModelList select _tsgMapper.DbToDomain(teacherSubjectGroupDbModel)).ToList(),
                 item.Id,
-                _personDataMapper.ModelToEntity(_context.PersonDatas.Find(item.PersonDataDbModelId)),
-                _teacherExpDataMapper.ModelToEntity(_context.TeacherExpDatas.Find(item.TeacherExpDataDbModelId)),
+                _personDataMapper.DbToDomain(_context.PersonDatas.Find(item.PersonDataDbModelId)),
+                _teacherExpDataMapper.DbToDomain(_context.TeacherExpDatas.Find(item.TeacherExpDataDbModelId)),
                 item.DepartmentDbModelId
             );
         }
