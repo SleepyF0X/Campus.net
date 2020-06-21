@@ -19,15 +19,15 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.AdditionalData
             _specializationMapper = new SpecializationMapper(context);
         }
 
-        public StudentDataDbModel DomainToDb(StudentData item)
+        public StudentDataDbModel ModelToEntity(StudentData item)
         {
             return new StudentDataDbModel(item.Id, item.FacultyId, item.Specialization.Id, item.EntryDate, item.StudyForm, item.StudyType);
         }
 
-        public StudentData DbToDomain(StudentDataDbModel item)
+        public StudentData EntityToModel(StudentDataDbModel item)
         {
             var specialization = _context.Specializations.Find(item.SpecializationDbModelId);
-            return new StudentData(item.Id, Guid.Empty, _specializationMapper.DbToDomain(specialization), item.EntryDate, item.StudyForm, item.StudyType);
+            return new StudentData(item.Id, Guid.Empty, _specializationMapper.EntityToModel(specialization), item.EntryDate, item.StudyForm, item.StudyType);
         }
     }
 }

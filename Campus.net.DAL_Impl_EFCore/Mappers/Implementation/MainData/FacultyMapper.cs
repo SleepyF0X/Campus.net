@@ -18,11 +18,11 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             _departmentMapper = new DepartmentMapper(_context);
         }
 
-        public Faculty DbToDomain(FacultyDbModel item)
+        public Faculty EntityToModel(FacultyDbModel item)
         {
             var facultyDbModel = _context.Faculties.Find(item.Id);
             _context.Entry(facultyDbModel).Collection(f => f.DepartmentDbModels).Load();
-            var departments = (from department in facultyDbModel.DepartmentDbModels select _departmentMapper.DbToDomain(department)).ToList();
+            var departments = (from department in facultyDbModel.DepartmentDbModels select _departmentMapper.EntityToModel(department)).ToList();
             return new Faculty(
                 departments, 
                 item.Id, 
@@ -30,7 +30,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
                 );
         }
 
-        public FacultyDbModel DomainToDb(Faculty item)
+        public FacultyDbModel ModelToEntity(Faculty item)
         {
             return new FacultyDbModel(
                 item.Id,

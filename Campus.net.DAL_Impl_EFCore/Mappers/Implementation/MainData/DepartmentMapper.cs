@@ -19,13 +19,13 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             _teacherMapper = new TeacherMapper(_context);
         }
 
-        public Department DbToDomain(DepartmentDbModel item)
+        public Department EntityToModel(DepartmentDbModel item)
         {
             var departmentDbModel = _context.Departments.Find(item.Id);
             _context.Entry(departmentDbModel).Collection(d => d.SpecializationDbModels).Load();
             _context.Entry(departmentDbModel).Collection(d=>d.TeacherDbModels).Load();
-            var specializations = (from specialization in departmentDbModel.SpecializationDbModels select _specializationMapper.DbToDomain(specialization)).ToList();
-            var teachers = (from teacher in departmentDbModel.TeacherDbModels select _teacherMapper.DbToDomain(teacher)).ToList();
+            var specializations = (from specialization in departmentDbModel.SpecializationDbModels select _specializationMapper.EntityToModel(specialization)).ToList();
+            var teachers = (from teacher in departmentDbModel.TeacherDbModels select _teacherMapper.EntityToModel(teacher)).ToList();
             return new Department(
                 specializations,
                 teachers,
@@ -35,7 +35,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
                 );
         }
 
-        public DepartmentDbModel DomainToDb(Department item)
+        public DepartmentDbModel ModelToEntity(Department item)
         {
             return new DepartmentDbModel(
                 item.Id,

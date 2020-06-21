@@ -18,11 +18,11 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             _specializationMapper = new SpecializationMapper(_context);
         }
 
-        public Specialty DbToDomain(SpecialtyDbModel item)
+        public Specialty EntityToModel(SpecialtyDbModel item)
         {
             var specialtyDbModel = _context.Specialties.Find(item.Id);
             _context.Entry(specialtyDbModel).Collection(s=>s.SpecializationDbModels).Load();
-            var specializations = (from specialization in specialtyDbModel.SpecializationDbModels select _specializationMapper.DbToDomain(specialization)).ToList();
+            var specializations = (from specialization in specialtyDbModel.SpecializationDbModels select _specializationMapper.EntityToModel(specialization)).ToList();
             return new Specialty(
                 specializations,
                 item.Id,
@@ -31,7 +31,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
                 );
         }
 
-        public SpecialtyDbModel DomainToDb(Specialty item)
+        public SpecialtyDbModel ModelToEntity(Specialty item)
         {
             return new SpecialtyDbModel(
                 item.Id,

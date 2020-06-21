@@ -13,14 +13,14 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.Relational
         {
             _context = context;
         }
-        public TeacherSubject_GroupDbModel DomainToDb(TeacherSubjectGroup item)
+        public TeacherSubject_GroupDbModel ModelToEntity(TeacherSubjectGroup item)
         {
             var tsDbModelLink = _context.TeacherSubjects
                 .FirstOrDefault(ts => ts.TeacherDbModelId.Equals(item.TeacherId) && ts.SubjectDbModelId.Equals(item.SubjectId));
             return new TeacherSubject_GroupDbModel(item.Id, tsDbModelLink.Id, item.GroupId);
         }
 
-        public TeacherSubjectGroup DbToDomain(TeacherSubject_GroupDbModel item)
+        public TeacherSubjectGroup EntityToModel(TeacherSubject_GroupDbModel item)
         {
             var tsDbModelLink = _context.TeacherSubjects.Find(item.TeacherSubjectDbModelId);
             return new TeacherSubjectGroup(item.Id, tsDbModelLink.TeacherDbModelId, tsDbModelLink.SubjectDbModelId, item.GroupDbModelId);

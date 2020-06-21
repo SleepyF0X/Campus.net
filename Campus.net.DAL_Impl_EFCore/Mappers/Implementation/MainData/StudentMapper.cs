@@ -20,17 +20,17 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             _studentDataMapper = new StudentDataMapper(context);
         }
 
-        public StudentDbModel DomainToDb(Student item)
+        public StudentDbModel ModelToEntity(Student item)
         {
             return new StudentDbModel(item.Id, item.PersonData.Id, item.StudentData.Id, item.GroupId);
         }
 
-        public Student DbToDomain(StudentDbModel item)
+        public Student EntityToModel(StudentDbModel item)
         {
             return new Student(
                 item.Id,
-                _personDataMapper.DbToDomain(_context.PersonDatas.Find(item.PersonDataDbModelId)),
-                _studentDataMapper.DbToDomain(_context.StudentDatas.Find(item.StudentDataDbModelId)),
+                _personDataMapper.EntityToModel(_context.PersonDatas.Find(item.PersonDataDbModelId)),
+                _studentDataMapper.EntityToModel(_context.StudentDatas.Find(item.StudentDataDbModelId)),
                 item.GroupDbModelId
                 );
         }

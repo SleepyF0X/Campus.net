@@ -2,7 +2,6 @@
 using Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData;
 using Campus.net.DAL_Impl_EFCore.Mappers.Interfaces.AdditionalData;
 using Campus.net.Domain.AdditionalData;
-using Campus.net.Shared;
 
 namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.AdditionalData
 {
@@ -15,15 +14,13 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.AdditionalData
             _context = context;
         }
 
-        public SubjectDataDbModel DomainToDb(SubjectData item)
+        public SubjectDataDbModel ModelToEntity(SubjectData item)
         {
-            CustomValidator.ValidateObject(item);
             return new SubjectDataDbModel();
         }
 
-        public SubjectData DbToDomain(SubjectDataDbModel item)
+        public SubjectData EntityToModel(SubjectDataDbModel item)
         {
-            CustomValidator.ValidateObject(item);
             return new SubjectData();
         }
     }

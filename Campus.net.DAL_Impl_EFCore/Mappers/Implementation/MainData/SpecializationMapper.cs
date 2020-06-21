@@ -22,13 +22,13 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             _subjectDataMapper = new SubjectDataMapper(_context);
         }
 
-        public Specialization DbToDomain(SpecializationDbModel item)
+        public Specialization EntityToModel(SpecializationDbModel item)
         {
             var specializationDbModel = _context.Specializations.Find(item.Id);
             _context.Entry(specializationDbModel).Collection(s=>s.GroupDbModels).Load();
             _context.Entry(specializationDbModel).Collection(s=>s.SubjectDataDbModels).Load();
-            var groups = (from gp in specializationDbModel.GroupDbModels select _groupMapper.DbToDomain(gp)).ToList();
-            var subjectDatas = (from subjectData in specializationDbModel.SubjectDataDbModels select _subjectDataMapper.DbToDomain(subjectData)).ToList();
+            var groups = (from gp in specializationDbModel.GroupDbModels select _groupMapper.EntityToModel(gp)).ToList();
+            var subjectDatas = (from subjectData in specializationDbModel.SubjectDataDbModels select _subjectDataMapper.EntityToModel(subjectData)).ToList();
             return new Specialization(
                 groups,
                 subjectDatas,
@@ -39,7 +39,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
                 );
         }
 
-        public SpecializationDbModel DomainToDb(Specialization item)
+        public SpecializationDbModel ModelToEntity(Specialization item)
         {
             CustomValidator.ValidateObject(item);
             return new SpecializationDbModel(

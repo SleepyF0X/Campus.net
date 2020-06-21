@@ -25,12 +25,12 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             _subjectDataMapper = new SubjectDataMapper(context);
         }
 
-        public SubjectDbModel DomainToDb(Subject item)
+        public SubjectDbModel ModelToEntity(Subject item)
         {
             return new SubjectDbModel(item.Id, item.Name);
         }
 
-        public Subject DbToDomain(SubjectDbModel item)
+        public Subject EntityToModel(SubjectDbModel item)
         {
             var tsDbModelLinks = _context.TeacherSubjects.Where(ts => ts.SubjectDbModelId.Equals(item.Id)).ToList();
             var tsgDbModelList = new List<TeacherSubject_GroupDbModel>();
@@ -40,8 +40,8 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             }
             return new Subject
             (
-                (from teacherSubjectGroupDbModel in tsgDbModelList select _tsgMapper.DbToDomain(teacherSubjectGroupDbModel)).ToList(),
-                (from subjectDataDbModel in item.SubjectDataDbModels select _subjectDataMapper.DbToDomain(subjectDataDbModel)).ToList(),
+                (from teacherSubjectGroupDbModel in tsgDbModelList select _tsgMapper.EntityToModel(teacherSubjectGroupDbModel)).ToList(),
+                (from subjectDataDbModel in item.SubjectDataDbModels select _subjectDataMapper.EntityToModel(subjectDataDbModel)).ToList(),
                 item.Id,
                 item.SubjectName
             );
