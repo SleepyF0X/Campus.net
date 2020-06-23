@@ -5,7 +5,7 @@ using System;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData
 {
-    internal class StudentDataDbModel
+    internal sealed class StudentDataDbModel
     {
         public Guid Id { get; private set; }
         public Guid FacultyDbModelId { get; private set; }

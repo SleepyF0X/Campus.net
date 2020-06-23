@@ -3,7 +3,7 @@ using System;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.AdditionalData
 {
-    public class SubjectDataDbModel
+    internal sealed class SubjectDataDbModel
     {
         public Guid Id { get; private set; }
         public Guid SubjectDbModelId { get; private set; }

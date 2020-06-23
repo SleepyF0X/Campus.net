@@ -9,4 +9,10 @@
     <ProjectReference Include="..\Campus.net.Shared\Campus.net.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="RepoInterfaces\AdditionalData\" />
+    <Folder Include="RepoInterfaces\MainData\" />
+    <Folder Include="RepoInterfaces\Relational\" />
+  </ItemGroup>
+
 </Project>

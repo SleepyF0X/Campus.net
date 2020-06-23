@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.DbModels.MainData
 {
-    internal class TeacherDbModel
+    internal sealed class TeacherDbModel
     {
         public Guid Id { get; private set; }
         public Guid PersonDataDbModelId { get; private set; }
