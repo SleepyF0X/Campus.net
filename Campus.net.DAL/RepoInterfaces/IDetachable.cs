@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Campus.net.DAL.RepoInterfaces
 {
-    public interface IDetachable
+    public interface IDetachable<T>
     {
-        public void Detach<T>(Guid id);
+        public void Detach(Guid id);
     }
 }
