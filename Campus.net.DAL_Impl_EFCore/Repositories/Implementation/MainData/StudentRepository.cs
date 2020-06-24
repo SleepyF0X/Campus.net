@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Campus.net.DAL_Impl_EFCore.Repositories.Implementation.MainData
 {
-    public sealed class StudentRepository : IStudentRepository, IDetachable<Student>
+    public sealed class StudentRepository : IStudentRepository, IDetachable
     {
         private readonly CampusDbContext context;
         private readonly IStudentMapper studentMapper;
