@@ -9,7 +9,6 @@ namespace Campus.net.Domain.AdditionalData
     {
         public Guid Id { get; }
         public Guid FacultyId { get; }
-        public Specialization Specialization { get; }
 
         public int Course
         {
@@ -24,14 +23,12 @@ namespace Campus.net.Domain.AdditionalData
         public StudyForm StudyForm { get; }
         public StudyType StudyType { get; }
 
-        public StudentData(Guid id, Guid facultyId, Specialization specialization, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
+        public StudentData(Guid id, Guid facultyId, DateTimeOffset entryDate, StudyForm studyForm, StudyType studyType)
         {
             CustomValidator.ValidateId(id);
             CustomValidator.ValidateId(facultyId);
-            CustomValidator.ValidateObject(specialization);
             Id = id;
             FacultyId = facultyId;
-            Specialization = specialization;
             EntryDate = entryDate;
             StudyForm = studyForm;
             StudyType = studyType;

@@ -19,7 +19,7 @@ namespace Campus.net.DAL_Impl_EFCore.Repositories.Implementation.AdditionalData
         public StudentDataRepository(CampusDbContext context)
         {
             _context = context;
-            _studentDataMapper = new StudentDataMapper(context);
+            _studentDataMapper = new StudentDataMapper();
         }
         public void AddOne(StudentData item)
         {
