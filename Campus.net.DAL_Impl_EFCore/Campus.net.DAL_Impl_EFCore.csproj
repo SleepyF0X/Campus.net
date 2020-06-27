@@ -21,9 +21,4 @@
     <ProjectReference Include="..\Campus.net.DAL\Campus.net.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Implementation\AdditionalData\" />
-    <Folder Include="Repositories\Implementation\Relational\" />
-  </ItemGroup>
-
 </Project>

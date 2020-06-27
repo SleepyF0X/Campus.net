@@ -15,13 +15,13 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
     internal sealed class SubjectMapper : ISubjectMapper
     {
         private readonly CampusDbContext _context;
-        private readonly ITsgMapper _tsgMapper;
+        private readonly ITeacherSubjectGroupMapper _tsgMapper;
         private readonly ISubjectDataMapper _subjectDataMapper;
 
         public SubjectMapper(CampusDbContext context)
         {
             _context = context;
-            _tsgMapper = new TsgMapper(context);
+            _tsgMapper = new TeacherSubjectGroupMapper(context);
             _subjectDataMapper = new SubjectDataMapper(context);
         }
 
@@ -40,7 +40,6 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             }
             return new Subject
             (
-                (from teacherSubjectGroupDbModel in tsgDbModelList select _tsgMapper.EntityToModel(teacherSubjectGroupDbModel)).ToList(),
                 (from subjectDataDbModel in item.SubjectDataDbModels select _subjectDataMapper.EntityToModel(subjectDataDbModel)).ToList(),
                 item.Id,
                 item.SubjectName
