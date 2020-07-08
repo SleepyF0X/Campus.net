@@ -12,12 +12,12 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
     {
         private readonly CampusDbContext _context;
         private readonly IStudentMapper _studentMapper;
-        private readonly ITsgMapper _tsgMapper;
+        private readonly ITeacherSubjectGroupMapper _tsgMapper;
         public GroupMapper(CampusDbContext context)
         {
             _context = context;
             _studentMapper = new StudentMapper(context);
-            _tsgMapper = new TsgMapper(context);
+            _tsgMapper = new TeacherSubjectGroupMapper(context);
         }
 
         public GroupDbModel ModelToEntity(Group item)
@@ -32,7 +32,6 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
             var tsgDbModelList = _context.TeacherSubject_Groups.Where(i=>i.GroupDbModelId.Equals(groupDbModel.Id)).ToList();
             return new Group(
                 (from studentDbModel in groupDbModel.StudentDbModels select _studentMapper.EntityToModel(studentDbModel)).ToList(),
-                (from tsg in tsgDbModelList select _tsgMapper.EntityToModel(tsg)).ToList(),
                 item.Id,
                 item.GroupName, 
                 item.SpecializationDbModelId

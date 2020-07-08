@@ -15,12 +15,6 @@ namespace Campus.net.Domain.MainData
         public Guid SpecializationId { get; }
         private readonly List<Student> _students;
         public IReadOnlyCollection<Student> Students => _students.AsReadOnly();
-        private readonly List<TeacherSubjectGroup> _teacherSubjectGroups;
-
-        public IReadOnlyCollection<TeacherSubject> TeacherSubjects => 
-            (from tsg in _teacherSubjectGroups
-            where tsg.TeacherId.Equals(Id)
-            select new TeacherSubject(tsg.TeacherId, tsg.SubjectId)).ToList().AsReadOnly();
 
         public Group(Guid id, string groupName, Guid specializationId)
         {
@@ -31,16 +25,13 @@ namespace Campus.net.Domain.MainData
             GroupName = groupName;
             SpecializationId = specializationId;
             _students = new List<Student>();
-            _teacherSubjectGroups = new List<TeacherSubjectGroup>();
         }
 
-        public Group(List<Student> students, List<TeacherSubjectGroup> teacherSubjectGroups, Guid id, string groupName,
+        public Group(List<Student> students, Guid id, string groupName,
             Guid specializationId) : this(id, groupName, specializationId)
         {
-            CustomValidator.ValidateObject(teacherSubjectGroups);
             CustomValidator.ValidateObject(students);
             _students = students;
-            _teacherSubjectGroups = teacherSubjectGroups;
         }
     }
 }

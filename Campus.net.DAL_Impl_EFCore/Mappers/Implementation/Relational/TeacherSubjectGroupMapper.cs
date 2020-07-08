@@ -6,10 +6,10 @@ using Campus.net.Domain.RelationClasses;
 
 namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.Relational
 {
-    internal  sealed class TsgMapper : ITsgMapper
+    internal sealed class TeacherSubjectGroupMapper : ITeacherSubjectGroupMapper
     {
         private readonly CampusDbContext _context;
-        public TsgMapper(CampusDbContext context)
+        public TeacherSubjectGroupMapper(CampusDbContext context)
         {
             _context = context;
         }
