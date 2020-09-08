@@ -6,6 +6,6 @@ namespace Campus.net.DAL.RepoInterfaces
 {
     public interface IDetachable
     {
-        public void Detach<T>(Guid id);
+        public void Detach(Guid id);
     }
 }

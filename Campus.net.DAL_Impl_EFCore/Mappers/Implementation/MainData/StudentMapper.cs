@@ -17,7 +17,7 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
         {
             _context = context;
             _personDataMapper = new PersonDataMapper();
-            _studentDataMapper = new StudentDataMapper(context);
+            _studentDataMapper = new StudentDataMapper();
         }
 
         public StudentDbModel ModelToEntity(Student item)

@@ -15,13 +15,13 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
     internal sealed class TeacherMapper : ITeacherMapper
     {
         private readonly CampusDbContext _context;
-        private readonly ITsgMapper _tsgMapper;
+        private readonly ITeacherSubjectGroupMapper _tsgMapper;
         private readonly IPersonDataMapper _personDataMapper;
         private readonly ITeacherExpDataMapper _teacherExpDataMapper;
         public TeacherMapper(CampusDbContext context)
         {
             _context = context;
-            _tsgMapper = new TsgMapper(context);
+            _tsgMapper = new TeacherSubjectGroupMapper(context);
             _personDataMapper = new PersonDataMapper();
             _teacherExpDataMapper = new TeacherExpDataMapper();
         }
@@ -41,7 +41,6 @@ namespace Campus.net.DAL_Impl_EFCore.Mappers.Implementation.MainData
                     .Where(tsg => tsg.TeacherSubjectDbModelId.Equals(ts.Id)));
             }
             return new Teacher(
-                (from teacherSubjectGroupDbModel in tsgDbModelList select _tsgMapper.EntityToModel(teacherSubjectGroupDbModel)).ToList(),
                 item.Id,
                 _personDataMapper.EntityToModel(_context.PersonDatas.Find(item.PersonDataDbModelId)),
                 _teacherExpDataMapper.EntityToModel(_context.TeacherExpDatas.Find(item.TeacherExpDataDbModelId)),
